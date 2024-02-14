@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import mockCurrencyData from './temp/mock_currency_data.json'
+import { CurrencyDataNode, CurrencyData } from './interfaces'
+import { countryCurrencyCodes } from './consts'
 import './App.css'
 
 
@@ -7,7 +9,7 @@ function App() {
   const [selectedCountry, setSelectedCountry] = useState('')
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
 
-  const currencyData = mockCurrencyData.data
+  const currencyData: CurrencyData = mockCurrencyData.data
 
   const handleSlotChange = (index: number, value: number) => {
     const newSlotValues = [...baseSlotValues]
@@ -26,7 +28,7 @@ function App() {
         </p>
         {selectedCountry && (
           <p>
-            Currency Code: {currencyData[selectedCountry].currency_code}
+            Currency Code: {currencyData[selectedCountry].code}
           </p>
         )}
         {selectedCountry && (
@@ -66,9 +68,9 @@ function App() {
               onChange={(e) => setSelectedCountry(e.target.value)}
             >
               <option value="">Select Country</option>
-              {Object.keys(currencyData).map((country) => (
+              {Object.keys(countryCurrencyCodes).map((country) => (
                 <option key={country} value={country}>
-                  {currencyData[country].country}
+                  {countryCurrencyCodes[country]}
                 </option>
               ))}
             </select>
