@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import mockCurrencyData from './temp/mock_currency_data.json'
-import { CurrencyDataNode, CurrencyData } from './interfaces'
+import { CurrencyData } from './interfaces'
 import { countryCurrencyCodes } from './consts'
+import Header  from './Header'
 import './App.css'
 
 
@@ -23,12 +24,16 @@ function App() {
   return (
     <>
       <div>
+        <Header />
         <p className="subtitle">
           Compare currencies based on values you find expensive or cheap.
         </p>
         {selectedCountry && (
+          <button onClick={() => setSelectedCountry('')}>Select another country</button>
+        )}
+        {selectedCountry && (
           <p>
-            Currency Code: {currencyData[selectedCountry].code}
+            Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
           </p>
         )}
         {selectedCountry && (
