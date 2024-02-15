@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import mockCurrencyData from './temp/mock_currency_data.json'
 import { CurrencyData } from './interfaces'
-import { countryCurrencyCodes } from './consts'
-import Header  from './Header'
+import { countryCurrencyCodes, countryNamesCountryCodes } from './consts'
+import Header from './Header'
 import './App.css'
 
 
@@ -73,9 +73,9 @@ function App() {
               onChange={(e) => setSelectedCountry(e.target.value)}
             >
               <option value="">Select Country</option>
-              {Object.keys(countryCurrencyCodes).map((country) => (
-                <option key={country} value={country}>
-                  {countryCurrencyCodes[country]}
+              {Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => (
+                <option key={countryAndCurrencyName} value={countryCode}>
+                  {countryAndCurrencyName}
                 </option>
               ))}
             </select>
