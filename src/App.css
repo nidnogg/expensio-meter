@@ -15,10 +15,6 @@
   transition: filter 300ms;
 }
 
-:root {
-
-}
-
 .ruler {
   display: flex;
   align-items: center;
