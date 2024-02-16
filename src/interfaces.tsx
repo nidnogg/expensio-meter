@@ -6,3 +6,8 @@ export interface CurrencyDataNode {
 export interface CurrencyData {
   [key: string]: CurrencyDataNode;
 }
+
+export interface MeterProps {
+  baseSlotValues: number[];
+  handleSlotChange: (index: number, value: number) => void;
+}

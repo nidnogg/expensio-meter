@@ -3,6 +3,7 @@ import mockCurrencyData from './temp/mock_currency_data.json'
 import { CurrencyData } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes } from './consts'
 import Header from './Header'
+import Meter from './Meter'
 import './App.css'
 
 
@@ -37,33 +38,7 @@ function App() {
           </p>
         )}
         {selectedCountry && (
-          <div className="ruler">
-            <input
-              type="number"
-              value={baseSlotValues[0]}
-              onChange={(e) => handleSlotChange(0, parseInt(e.target.value))}
-            />
-            <input
-              type="number"
-              value={baseSlotValues[1]}
-              onChange={(e) => handleSlotChange(1, parseInt(e.target.value))}
-            />
-            <input
-              type="number"
-              value={baseSlotValues[2]}
-              onChange={(e) => handleSlotChange(2, parseInt(e.target.value))}
-            />
-            <input
-              type="number"
-              value={baseSlotValues[3]}
-              onChange={(e) => handleSlotChange(3, parseInt(e.target.value))}
-            />
-            <input
-              type="number"
-              value={baseSlotValues[4]}
-              onChange={(e) => handleSlotChange(4, parseInt(e.target.value))}
-            />
-          </div>
+          <Meter baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
         )}
         {!selectedCountry && (
           <div>
