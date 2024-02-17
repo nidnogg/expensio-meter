@@ -13,7 +13,6 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
             type="number"
             value={value}
             onChange={(e) => handleSlotChange(index, parseInt(e.target.value))}
-            disabled={index > 0 && value <= baseSlotValues[index - 1]} // Disables input if value is not increasing
           />
         </div>
       ))}

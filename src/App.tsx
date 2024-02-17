@@ -9,6 +9,8 @@ import './App.css'
 
 function App() {
   const [selectedCountry, setSelectedCountry] = useState('')
+  const [selectedCountriesToCompare, setSelectedCountriesToCompare] = useState([])
+
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
 
   const currencyData: CurrencyData = mockCurrencyData.data
