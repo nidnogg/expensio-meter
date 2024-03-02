@@ -15,6 +15,11 @@ function App() {
 
   const currencyData: CurrencyData = mockCurrencyData.data
 
+  const getSubtitleText = () => {
+    if (selectedCountry && selectedCountriesToCompare.length === 0) 
+      return "Now add a different country to compare its currency."
+    return "Compare currencies based on values you find expensive or cheap."  
+  }
   const handleSlotChange = (index: number, value: number) => {
     const newSlotValues = [...baseSlotValues]
     newSlotValues[index] = value
@@ -22,17 +27,16 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(currencyData)
   })
   return (
     <>
       <div>
         <Header />
         <p className="subtitle">
-          Compare currencies based on values you find expensive or cheap.
+          {getSubtitleText()}
         </p>
         {selectedCountry && (
-          <button onClick={() => setSelectedCountry('')}>Select another country</button>
+          <button onClick={() => setSelectedCountry('')}>Select another home country</button>
         )}
         {selectedCountry && (
           <p>
