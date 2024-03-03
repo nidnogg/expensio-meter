@@ -11,3 +11,8 @@ export interface MeterProps {
   baseSlotValues: number[];
   handleSlotChange: (index: number, value: number) => void;
 }
+
+export interface MeterCompareProps {
+  baseSlotValuesToCompare: number[];
+  countryToCompare: string;
+}

@@ -4,12 +4,13 @@ import { CurrencyData } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes } from './consts'
 import Header from './Header'
 import Meter from './Meter'
+import MeterCompare from './MeterCompare'
 import './App.css'
 
 
 function App() {
   const [selectedCountry, setSelectedCountry] = useState('')
-  const [selectedCountriesToCompare, setSelectedCountriesToCompare] = useState([])
+  const [selectedCountriesToCompare, setSelectedCountriesToCompare] = useState<string[]>([])
 
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
 
@@ -44,7 +45,29 @@ function App() {
           </p>
         )}
         {selectedCountry && (
-          <Meter baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
+          <>
+            <Meter baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
+            {
+              selectedCountriesToCompare && selectedCountriesToCompare.map(country => {
+                <MeterCompare baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
+              })
+            }
+            <select
+                value={selectedCountriesToCompare}
+                onChange={(e) => {
+                  setSelectedCountriesToCompare([...selectedCountriesToCompare, e.target.value]);
+                }}
+              >
+                <option value="">Select Country</option>
+                {Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => (
+                  <option key={countryAndCurrencyName} value={countryCode}>
+                    {countryAndCurrencyName}
+                  </option>
+                ))}
+            </select>
+            
+          </>
+
         )}
         {!selectedCountry && (
           <div>
