@@ -41,31 +41,43 @@ function App() {
         )}
         {selectedCountry && (
           <p>
-            Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
+            Country {selectedCountry} | Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
           </p>
         )}
         {selectedCountry && (
           <>
-            <Meter baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
+            <Meter key="baseMeter" baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
             {
-              selectedCountriesToCompare && selectedCountriesToCompare.map(country => {
-                <MeterCompare baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
+              selectedCountriesToCompare && selectedCountriesToCompare.map((country, index) => {
+                return (
+                  <>
+                    <p>
+                      Country: {country} | Currency: {currencyData[countryCurrencyCodes[country]].code}
+                    </p>
+                    <MeterCompare key={index} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
+                  </>
+                )
               })
             }
+
+            {/* Maybe componentify this too? */}
+            <br />
             <select
-                value={selectedCountriesToCompare}
+                value={""}
                 onChange={(e) => {
+                  console.log("before", selectedCountriesToCompare)
                   setSelectedCountriesToCompare([...selectedCountriesToCompare, e.target.value]);
+                  console.log("after", selectedCountriesToCompare)
+
                 }}
               >
-                <option value="">Select Country</option>
+                <option value="">+ Add Country to Compare</option>
                 {Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => (
                   <option key={countryAndCurrencyName} value={countryCode}>
                     {countryAndCurrencyName}
                   </option>
                 ))}
             </select>
-            
           </>
 
         )}
