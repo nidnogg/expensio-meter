@@ -48,13 +48,13 @@ function App() {
           <>
             <Meter key="baseMeter" baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
             {
-              selectedCountriesToCompare && selectedCountriesToCompare.map((country, index) => {
+              selectedCountriesToCompare && selectedCountriesToCompare.map(country => {
                 return (
                   <>
                     <p>
                       Country: {country} | Currency: {currencyData[countryCurrencyCodes[country]].code}
                     </p>
-                    <MeterCompare key={index} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
+                    <MeterCompare key={`meter_compare_${country}`} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
                   </>
                 )
               })

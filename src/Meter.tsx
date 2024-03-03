@@ -7,7 +7,7 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
   return (
     <div className="meter">
       {baseSlotValues.map((value, index) => (
-        <div key={index}>
+        <div key={`label_name_${value}`}>
           <label>{labelNames[index]}</label>
           <input
             type="number"
