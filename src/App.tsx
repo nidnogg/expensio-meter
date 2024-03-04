@@ -46,16 +46,16 @@ function App() {
         )}
         {selectedCountry && (
           <>
-            <Meter key="baseMeter" baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
+            <Meter baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
             {
               selectedCountriesToCompare && selectedCountriesToCompare.map(country => {
                 return (
-                  <>
+                  <div key={`meter_compare_${country}`}>
                     <p>
                       Country: {country} | Currency: {currencyData[countryCurrencyCodes[country]].code}
                     </p>
-                    <MeterCompare key={`meter_compare_${country}`} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
-                  </>
+                    <MeterCompare baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
+                  </div>
                 )
               })
             }
@@ -73,7 +73,7 @@ function App() {
               >
                 <option value="">+ Add Country to Compare</option>
                 {Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => (
-                  <option key={countryAndCurrencyName} value={countryCode}>
+                  <option key={`country_${countryAndCurrencyName}_${countryCode}`} value={countryCode}>
                     {countryAndCurrencyName}
                   </option>
                 ))}
