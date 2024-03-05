@@ -26,6 +26,11 @@ export interface CurrencyJson {
   data: CurrencyData;
 }
 
+export interface CachePayload {
+  country: string;
+  values: number[];
+}
+
 
 export interface MeterProps {
   baseSlotValues: number[];

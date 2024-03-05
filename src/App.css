@@ -49,6 +49,12 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.save-data-btn {
+  position: fixed;
+  bottom: 4em;
+  left: 4em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

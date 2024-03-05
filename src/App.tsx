@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 // import mockCurrencyData from './temp/mock_currency_data.json' 
-import { CurrencyJson, CurrencyData } from './interfaces'
+import { CurrencyJson, CurrencyData, CachePayload } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
@@ -18,6 +18,9 @@ function App() {
   const [currencyJson, setCurrencyJson] = useState<CurrencyJson>({} as CurrencyJson)
   const [currencyData, setCurrencyData] = useState<CurrencyData>({} as CurrencyData)
   const [hintToastShown, setHintToastShown] = useState<boolean>(false)
+  const [hasCache, setHasCache] = useState<boolean>(false)
+  const [cacheText, setCacheText] = useState<string>("💾 Save Data for Next Visit")
+
   const [parent] = useAutoAnimate({
     // Animation duration in milliseconds (default: 250)
     duration: 188,
@@ -72,9 +75,7 @@ function App() {
 
   const checkForEqualOrCrescentValues = async () => {
     if (localStorage.getItem('expensio_ignore_hint') !== 'true' && checkSorted(baseSlotValues) && !hintToastShown ) {
-      console.log('hintToastShown before', hintToastShown);
       setHintToastShown(true)
-      console.log('hintToastShown after', hintToastShown);
       toast((t) => (
         <span>
           🔍 <b>Hint:</b> try setting increasing values from left to right. <br /> <br />
@@ -93,6 +94,90 @@ function App() {
     }
   }
 
+  const checkCachedData = () => {
+    const cacheString = localStorage.getItem('expensio_meter_cache')
+    if (cacheString !== null) {
+      setHasCache(true)
+      const cache = JSON.parse(cacheString)
+      const {country, values} = cache as CachePayload
+      let toastMessage = "Successfully loaded "
+      if (country.length > 0) {
+        setSelectedCountry(country)
+        toastMessage = toastMessage.concat("country ")
+      } else {
+        toastMessage = "No previous data found"
+        return 0
+      }
+      if (values.length > 0) {
+        setBaseSlotValues(values)
+        toastMessage = toastMessage.concat("and currency ")
+      }
+      toastMessage = toastMessage.concat("data from cache.")
+      console.log(toastMessage)
+      toast.success(toastMessage,
+        {
+          style: {
+            // borderRadius: '10px',
+            // background: '#333',
+            // color: '#fff',
+          },
+        }
+      )    
+    }
+  }
+  const saveDataForNextVisit = () => {
+    const cachePayload: CachePayload = {"country": "", "values": []}
+    if (selectedCountry) {
+      cachePayload.country = selectedCountry
+    }
+
+    if (baseSlotValues) {
+      cachePayload.values = baseSlotValues
+    }
+    console.log("storingCache", cachePayload)
+    if (cachePayload.country === "") {
+      toast.error('Please try selecting a country and adding data before',
+        {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      )
+      return 0
+    }
+    localStorage.setItem('expensio_meter_cache', JSON.stringify(cachePayload))
+    toast.success('Saved to cache successfully',
+      {
+        style: {
+          // borderRadius: '10px',
+          // background: '#333',
+          // color: '#fff',
+        },
+      }
+    )
+  }
+
+  const clearCacheData = () => {
+    try {
+      localStorage.removeItem('expensio_meter_cache')
+      setHasCache(false)
+      hasCache ? setCacheText("♻️ Clear Saved Data") : setCacheText("💾 Save Data for Next Visit")
+      toast.success("Sucessfully cleared data cache",
+        {
+          style: {
+            // borderRadius: '10px',
+            // background: '#333',
+            // color: '#fff',
+          },
+        }
+      )    
+    } catch (err) {
+      toast.error(`Failed to delete cached data. Check console for details`)
+      console.log(err)
+    }
+  }
   useEffect(() => {
     async function fetchData() {
       try {
@@ -111,6 +196,16 @@ function App() {
     setCurrencyData(currencyJson?.data)
   }, [currencyJson])
 
+  useEffect(() => {
+    console.log("Checking cached data...")
+    checkCachedData()
+  }, [])
+
+  useEffect(() => {
+    hasCache ? setCacheText("♻️ Clear Saved Data") : setCacheText("💾 Save Data for Next Visit")
+  }, [hasCache]);
+
+
   return (
     <>
       <div ref={parent}>
@@ -121,12 +216,12 @@ function App() {
         {selectedCountry && (
           <button onClick={() => resetAppState()}>Select another home country</button>
         )}
-        {selectedCountry && (
+        { (selectedCountry && currencyData) && (
           <p ref={parent}>
             Country: {countryCodesCountryNames[selectedCountry]}  | Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
           </p>
         )}
-        {selectedCountry && (
+        {(selectedCountry && currencyData) && (
           <div ref={parent}>
             <Meter key={`meter-component`} baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange} />
             {
@@ -136,7 +231,6 @@ function App() {
                     <p>
                       Country: {countryCodesCountryNames[country]} | Currency: {currencyData[countryCurrencyCodes[country]]?.code}
                     </p>
-                    <button onClick={() => handleCountryRemoval(country)}>Remove</button>
                     <MeterCompare
                       key={`meter_compare_component_${country}`}
                       baseSlotValuesToCompare={baseSlotValues}
@@ -145,6 +239,8 @@ function App() {
                       currencyCodeToCompare={currencyData[countryCurrencyCodes[country]].code}
                       currencyRateToCompare={currencyData[countryCurrencyCodes[country]].value}
                     />
+                    <br />
+                    <button onClick={() => handleCountryRemoval(country)}>Remove</button>
                   </div>
                 )
               })
@@ -185,6 +281,7 @@ function App() {
           </div>
         )}
       </div>
+      <button className="save-data-btn" onClick={() => {hasCache ? clearCacheData() : saveDataForNextVisit()}}>{cacheText}</button>
       <Toaster />
     </>
   )
