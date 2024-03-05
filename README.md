@@ -19,7 +19,7 @@ Then, add a country to compare and you can get a better idea of how values scale
 
 
 ## Setup
-Most of the dev environment was bootstrapped using `bun`, but later on it was migrated to `pnpm`. 
+Most of the dev environment was initially bootstrapped using `bun`, but later on it was migrated to `pnpm`. 
 Using `pnpm` is advised, especially if you add any dependencies, but not really essential.
 
 > [!WARNING]  
