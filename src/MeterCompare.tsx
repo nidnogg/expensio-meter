@@ -10,7 +10,7 @@ const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, ho
     console.log(`Converting ${value} in ${homeCurrencyCode} to ${currencyCodeToCompare}`)
     const homeCurrencyRateBaseUSD = 1.0/homeCurrencyRate
     const currencyRateToCompareBaseUSD = 1.0/currencyRateToCompare
-    return (value * homeCurrencyRateBaseUSD) / currencyRateToCompareBaseUSD
+    return ((value * homeCurrencyRateBaseUSD) / currencyRateToCompareBaseUSD).toFixed(4)
   }
 
   return (
