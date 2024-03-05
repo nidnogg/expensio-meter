@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useReducer } from 'react'
+import { useEffect, useState } from 'react'
 // import mockCurrencyData from './temp/mock_currency_data.json' 
 import { CurrencyJson, CurrencyData } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
