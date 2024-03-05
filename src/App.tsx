@@ -39,8 +39,6 @@ function App() {
 
   const handleCountryRemoval = (countryCode: string) => {
       const countryName = countryCodesCountryNames[countryCode]
-      console.log(countryCodesCountryNames);
-      console.log("ayo", countryCode)
       setSelectedCountriesToCompare(selectedCountriesToCompare.filter(country => country !== countryCode))
       toast(`Removed ${countryName}`, {
         duration: 1700,
@@ -69,7 +67,7 @@ function App() {
         )}
         {selectedCountry && (
           <p>
-            Country {selectedCountry} | Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
+            Country: {countryCodesCountryNames[selectedCountry]}  | Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
           </p>
         )}
         {selectedCountry && (
@@ -80,7 +78,7 @@ function App() {
                 return (
                   <div key={`meter_compare_${country}`}>
                     <p>
-                      Country: {country} | Currency: {currencyData[countryCurrencyCodes[country]].code}
+                      Country: {countryCodesCountryNames[country]} | Currency: {currencyData[countryCurrencyCodes[country]].code}
                     </p>
                     <button onClick={() => handleCountryRemoval(country)}>Remove</button>
                     <MeterCompare key={`meter_compare_component_${country}`} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
@@ -89,8 +87,8 @@ function App() {
               })
             }
 
-            {/* Maybe componentify this too? */}
             <br />
+            {/* Maybe componentify this too? */}
             <select
                 value={""}
                 onChange={(e) => {
