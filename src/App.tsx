@@ -61,7 +61,7 @@ function App() {
       className: '',
 
       // Custom Icon
-      icon: '👏',
+      icon: '♻️',
     })
   }
 
