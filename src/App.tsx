@@ -218,7 +218,7 @@ function App() {
         )}
         { (selectedCountry && currencyData) && (
           <p ref={parent}>
-            Country: {countryCodesCountryNames[selectedCountry]}  | Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
+            <b>Country:</b> {countryCodesCountryNames[selectedCountry]}  | <b>Currency Code:</b> {currencyData[countryCurrencyCodes[selectedCountry]].code}
           </p>
         )}
         {(selectedCountry && currencyData) && (
@@ -229,7 +229,7 @@ function App() {
                 return (
                   <div key={`meter_compare_${country}`}>
                     <p>
-                      Country: {countryCodesCountryNames[country]} | Currency: {currencyData[countryCurrencyCodes[country]]?.code}
+                      <b>Country:</b> {countryCodesCountryNames[country]} | <b>Currency:</b> {currencyData[countryCurrencyCodes[country]]?.code}
                     </p>
                     <MeterCompare
                       key={`meter_compare_component_${country}`}
@@ -266,7 +266,7 @@ function App() {
         )}
         {!selectedCountry && (
           <div ref={parent}>
-            <p>Start by selecting your home country</p>
+            <p>Start by selecting your <b>home country</b></p>
             <select
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}

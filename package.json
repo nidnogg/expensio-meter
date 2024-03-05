@@ -12,11 +12,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
     "@formkit/auto-animate": "^0.8.1",
     "@types/node": "^20.11.17",
     "concurrently": "^8.2.2",
+    "framer-motion": "^11.0.8",
     "html2canvas": "^1.4.1",
-    "kbar": "0.1.0-beta.45",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
