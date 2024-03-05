@@ -1,3 +1,5 @@
+export const API_URL: string = "https://raw.githubusercontent.com/nidnogg/expensio-meter/main/data/currency_data.json";
+
 export const countryNamesCountryCodes: Record<string, string> = {
   'Afghanistan - AFN': 'AF',
   'Albania - ALL': 'AL',

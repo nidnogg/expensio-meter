@@ -7,6 +7,7 @@ const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, ho
   const labelNames: string[] = ['Super Cheap', 'Cheap', 'Moderate', 'Expensive', 'Very Expensive']
 
   const convert = (value: number) => {
+    console.log(`Converting ${value} in ${homeCurrencyCode} to ${currencyCodeToCompare}`)
     const homeCurrencyRateBaseUSD = 1.0/homeCurrencyRate
     const currencyRateToCompareBaseUSD = 1.0/currencyRateToCompare
     return (value * homeCurrencyRateBaseUSD) / currencyRateToCompareBaseUSD
@@ -24,7 +25,6 @@ const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, ho
               type="number"
               value={convertedValue}
               readOnly
-              // onChange={(e) => handleSlotChange(index, parseInt(e.target.value))}
             />
           </div>
         )
