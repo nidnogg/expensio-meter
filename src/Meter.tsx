@@ -5,7 +5,7 @@ import './Meter.css'
 
 const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
   const labelNames: string[] = ['Super Cheap', 'Cheap', 'Moderate', 'Expensive', 'Very Expensive']
-
+  
   return (
     <div className="meter">
       {baseSlotValues.map((value, index) => (

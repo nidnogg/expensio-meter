@@ -1,6 +1,7 @@
 export interface CurrencyDataNode {
   code: string;
   value: number;
+  last_updated_at: string;
 }
 
 export interface CurrencyData {
@@ -14,7 +15,10 @@ export interface MeterProps {
 
 export interface MeterCompareProps {
   baseSlotValuesToCompare: number[];
-  countryToCompare: string;
+  homeCurrencyCode: string;
+  homeCurrencyRate: number;
+  currencyCodeToCompare: string;
+  currencyRateToCompare: number;
 }
 
 export interface ToasterProps {

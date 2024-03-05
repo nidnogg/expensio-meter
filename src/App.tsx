@@ -81,7 +81,14 @@ function App() {
                       Country: {countryCodesCountryNames[country]} | Currency: {currencyData[countryCurrencyCodes[country]].code}
                     </p>
                     <button onClick={() => handleCountryRemoval(country)}>Remove</button>
-                    <MeterCompare key={`meter_compare_component_${country}`} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
+                    <MeterCompare 
+                      key={`meter_compare_component_${country}`} 
+                      baseSlotValuesToCompare={baseSlotValues} 
+                      homeCurrencyCode={currencyData[countryCurrencyCodes[selectedCountry]].code} 
+                      homeCurrencyRate={currencyData[countryCurrencyCodes[selectedCountry]].value} 
+                      currencyCodeToCompare={currencyData[countryCurrencyCodes[country]].code}
+                      currencyRateToCompare={currencyData[countryCurrencyCodes[country]].value}
+                    />
                   </div>
                 )
               })
