@@ -1,4 +1,6 @@
+// TO-DO refactor main couiple of useEffect fetches to use SWR in App.tsx (Mar 5 2024)
 import useSWR from 'swr'
+import { API_URL } from './consts';
 
 const fetcher = async (...args: Parameters<typeof fetch>) => {
   const res = await fetch(...args);
@@ -6,8 +8,7 @@ const fetcher = async (...args: Parameters<typeof fetch>) => {
 } 
 
 export const useCurrency = () => {
-  const currencyApiUrl = `https://fxmarketapi.com/apicurrencies?api_key=${process.env.FXMARKET_API_KEY}`
-  const { data, error, isLoading } = useSWR(currencyApiUrl, fetcher)
+  const { data, error, isLoading } = useSWR(API_URL, fetcher)
   return {
     currencyData: data,
     isLoading,

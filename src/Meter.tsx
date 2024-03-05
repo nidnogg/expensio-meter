@@ -13,6 +13,8 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
           <input
             autoFocus
             type="number"
+            min="0"
+            max="100000000000"
             value={baseSlotValues[index]}
             onKeyDown={(event) => {
               if (/[A-Za-z]/.test(event.key) 
@@ -27,7 +29,9 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
               }
             }}
             onChange={(event) => {
-              handleSlotChange(index, parseInt(event.target.value))
+              if (!isNaN(parseInt(event.target.value))) {
+                handleSlotChange(index, parseInt(event.target.value))
+              }
             }}
           />
           
