@@ -20,13 +20,14 @@
 }
 
 .meter input[type="number"] {
-  width: 70px;
-  padding: 8px;
+  width: 110px;
+  padding: 16px 4px 16px 4px;
   border: none;
   border-radius: 3px;
   background-color: #1a1a1a;
   color: #fff;
   text-align: center;
+  font-size: 1em;
 }
 
 .meter input[type="number"]:disabled {

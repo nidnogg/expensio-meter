@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 // import mockCurrencyData from './temp/mock_currency_data.json' 
 import { CurrencyJson, CurrencyData } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { debounce } from 'lodash';
 
 import Header from './Header'
 import Meter from './Meter'
@@ -41,6 +42,7 @@ function App() {
     const newSlotValues = [...baseSlotValues]
     newSlotValues[index] = value
     setBaseSlotValues(newSlotValues)
+    checkForEqualOrCrescentValuesDebounced()
   }
 
   const resetAppState = () => {
@@ -55,15 +57,39 @@ function App() {
     toast(`Removed ${countryName}`, {
       duration: 1700,
       position: 'top-center',
-
       // Styling
       style: {},
       className: '',
-
-      // Custom Icon
       icon: '♻️',
     })
   }
+
+  
+
+  function checkSorted(arr: number[]) { 
+    return arr.every((value, index, array) => index === 0 || value >= array[index - 1])
+  } 
+  const checkForEqualOrCrescentValues = () => {
+    if (localStorage.getItem('expensio_ignore_hint') !== 'true' && checkSorted(baseSlotValues)) {
+      toast((t) => (
+        <span>
+          🔍 <b>Hint:</b> try setting increasing values from left to right. <br /> <br />
+          <button onClick={() => {
+            localStorage.setItem('expensio_ignore_hint', 'true')
+            return toast.dismiss(t.id)
+          }}>
+            Don't show me again
+          </button>
+        </span>
+      ), {
+        'position': 'bottom-right', 
+      })
+    }
+  }
+
+  const checkForEqualOrCrescentValuesDebounced = useRef(debounce(() => {
+    checkForEqualOrCrescentValues()
+  }, 400)).current
 
   useEffect(() => {
     async function fetchData() {
@@ -83,6 +109,9 @@ function App() {
     setCurrencyData(currencyJson?.data)
   }, [currencyJson])
 
+  useEffect(() => {
+
+  })
   return (
     <>
       <div ref={parent}>

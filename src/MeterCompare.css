@@ -1,6 +1,5 @@
 .meter {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   border-top: 1px solid #444;
   padding-top: 10px;
@@ -14,22 +13,34 @@
 
 .meter label {
   display: block;
-  width: 120px;
+  width: 140px;
   margin-bottom: 5px;
   font-size: 12px;
   color: #888;
 }
 
 .meter input[type="number"] {
-  width: 50px;
-  padding: 5px;
+  width: 110px;
+  padding: 16px 4px 16px 4px;
   border: none;
   border-radius: 3px;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #1a1a1a;
+  color: #fff;
   text-align: center;
+  font-size: 1em;
 }
 
 .meter input[type="number"]:disabled {
-  background-color: #ddd;
+  /* TO-DO add proper disabled theming */
+  background-color: #1a1a1a;
+}
+
+/* Hide number input arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
 }

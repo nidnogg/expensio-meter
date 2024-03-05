@@ -1,7 +1,7 @@
 function Header()  {
   return (
     <>
-      <h1>expensio-meter</h1>
+      <h1>expensio-meter 💸</h1>
     </>
   )
 }

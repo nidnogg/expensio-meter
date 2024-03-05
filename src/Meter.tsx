@@ -17,6 +17,7 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
             max="100000000000"
             value={baseSlotValues[index]}
             onKeyDown={(event) => {
+              console.log(event)
               if (/[A-Za-z]/.test(event.key) 
                 && !event.ctrlKey 
                 && !event.altKey 
@@ -31,6 +32,8 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
             onChange={(event) => {
               if (!isNaN(parseInt(event.target.value))) {
                 handleSlotChange(index, parseInt(event.target.value))
+              } else {
+                handleSlotChange(index, 0)
               }
             }}
           />
