@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently --kill-others \"bun tailwindcss -i ./src/index.css -o ./src/output.css --watch\" \"vite\"",
+    "deprecated-dev": "concurrently --kill-others \"bun tailwindcss -i ./src/index.css -o ./src/output.css --watch\" \"vite\"",
+    "dev": "vite dev",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint-fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview"
   },
   "dependencies": {

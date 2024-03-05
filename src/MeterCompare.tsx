@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react'
-import { CurrencyData, MeterCompareProps } from "./interfaces"
-import mockCurrencyData from './temp/mock_currency_data.json'
+import React from 'react'
+import { MeterCompareProps } from "./interfaces"
 import './Meter.css'
 
 

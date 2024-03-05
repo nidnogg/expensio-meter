@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import mockCurrencyData from './temp/mock_currency_data.json'
-import { CurrencyData } from './interfaces'
+import { CurrencyJson, CurrencyData } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -16,7 +16,8 @@ function App() {
 
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
 
-  const currencyData: CurrencyData = mockCurrencyData.data
+  const currencyJson: CurrencyJson = mockCurrencyData
+  const currencyData: CurrencyData = currencyJson.data
 
   const getSubtitleText = () => {
     if (selectedCountry && selectedCountriesToCompare.length === 0) 

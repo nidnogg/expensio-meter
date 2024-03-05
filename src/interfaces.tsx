@@ -1,12 +1,31 @@
-export interface CurrencyDataNode {
-  code: string;
-  value: number;
+// export interface CurrencyDataNode {
+//   code: string;
+//   value: number;
+//   last_updated_at: string;
+// }
+
+// export interface CurrencyData {
+//   [key: string]: CurrencyDataNode;
+// }
+
+export interface CurrencyMeta {
   last_updated_at: string;
 }
 
-export interface CurrencyData {
-  [key: string]: CurrencyDataNode;
+export interface CurrencyDataNode {
+  code: string;
+  value: number;
 }
+
+export interface CurrencyData {
+  [currency: string]: CurrencyDataNode;
+}
+
+export interface CurrencyJson {
+  meta: CurrencyMeta;
+  data: CurrencyData;
+}
+
 
 export interface MeterProps {
   baseSlotValues: number[];
