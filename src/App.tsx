@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { CurrencyJson, CurrencyData } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import Header from './Header'
 import Meter from './Meter'
@@ -13,10 +14,18 @@ import './App.css'
 function App() {
   const [selectedCountry, setSelectedCountry] = useState('')
   const [selectedCountriesToCompare, setSelectedCountriesToCompare] = useState<string[]>([])
-
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
   const [currencyJson, setCurrencyJson] = useState<CurrencyJson>({} as CurrencyJson)
   const [currencyData, setCurrencyData] = useState<CurrencyData>({} as CurrencyData)
+  const [parent] = useAutoAnimate({
+    // Animation duration in milliseconds (default: 250)
+    duration: 188,
+    // Easing for motion (default: 'ease-in-out')
+    easing: 'ease-in-out',
+    // When true, this will enable animations even if the user has indicated
+    // they don’t want them via prefers-reduced-motion.
+    disrespectUserMotionPreference: false
+  })
 
   // Mocked currency Data, used in testing. To be deprecated in a future release.
   // const currencyJson: CurrencyJson = mockCurrencyData
@@ -76,7 +85,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div ref={parent}>
         <Header />
         <p className="subtitle">
           {getSubtitleText()}
@@ -85,12 +94,12 @@ function App() {
           <button onClick={() => resetAppState()}>Select another home country</button>
         )}
         {selectedCountry && (
-          <p>
+          <p ref={parent}>
             Country: {countryCodesCountryNames[selectedCountry]}  | Currency Code: {currencyData[countryCurrencyCodes[selectedCountry]].code}
           </p>
         )}
         {selectedCountry && (
-          <>
+          <div ref={parent}>
             <Meter key={`meter-component`} baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange} />
             {
               selectedCountriesToCompare && selectedCountriesToCompare.map(country => {
@@ -128,11 +137,11 @@ function App() {
                 </option>
               ))}
             </select>
-          </>
+          </div>
 
         )}
         {!selectedCountry && (
-          <div>
+          <div ref={parent}>
             <p>Start by selecting your home country</p>
             <select
               value={selectedCountry}

@@ -16,7 +16,6 @@ const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, ho
   return (
     <div className="meter">
       {baseSlotValuesToCompare.map((value, index) => {
-        console.log(value, index);
         const convertedValue = convert(value)
         return (
           <div key={`meter_compare_label_${value}_${index}`}>

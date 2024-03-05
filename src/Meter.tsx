@@ -15,7 +15,6 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
             type="number"
             value={baseSlotValues[index]}
             onKeyDown={(event) => {
-              console.log("testing", event.key)
               if (/[A-Za-z]/.test(event.key) 
                 && !event.ctrlKey 
                 && !event.altKey 
