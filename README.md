@@ -1,5 +1,5 @@
 <div align="center">
-<h1> expensio-meter 📸 </h1>
+<h1> expensio-meter 💸 </h1>
 
 Compare currencies based on values you find expensive or cheap  <br />
 Web • Linux • macOS • Windows <br />
