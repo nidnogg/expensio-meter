@@ -16,3 +16,7 @@ export interface MeterCompareProps {
   baseSlotValuesToCompare: number[];
   countryToCompare: string;
 }
+
+export interface ToasterProps {
+  message: string;
+}

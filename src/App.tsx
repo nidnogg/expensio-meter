@@ -21,10 +21,16 @@ function App() {
       return "Now add a different country to compare its currency."
     return "Compare currencies based on values you find expensive or cheap."  
   }
+
   const handleSlotChange = (index: number, value: number) => {
+    console.log("inside handleSlotYo", index, value)
     const newSlotValues = [...baseSlotValues]
     newSlotValues[index] = value
     setBaseSlotValues(newSlotValues)
+  }
+
+  const resetAppState = () => {
+    
   }
 
   useEffect(() => {
@@ -46,7 +52,7 @@ function App() {
         )}
         {selectedCountry && (
           <>
-            <Meter baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
+            <Meter key={`meter-component`} baseSlotValues={baseSlotValues} handleSlotChange={handleSlotChange}/>
             {
               selectedCountriesToCompare && selectedCountriesToCompare.map(country => {
                 return (
@@ -54,7 +60,7 @@ function App() {
                     <p>
                       Country: {country} | Currency: {currencyData[countryCurrencyCodes[country]].code}
                     </p>
-                    <MeterCompare baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
+                    <MeterCompare key={`meter_compare_component_${country}`} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
                   </div>
                 )
               })
