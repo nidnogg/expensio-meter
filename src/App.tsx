@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import mockCurrencyData from './temp/mock_currency_data.json'
 import { CurrencyData } from './interfaces'
-import { countryCurrencyCodes, countryNamesCountryCodes } from './consts'
+import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames } from './consts'
+import toast, { Toaster } from 'react-hot-toast';
+
 import Header from './Header'
 import Meter from './Meter'
 import MeterCompare from './MeterCompare'
@@ -30,7 +32,27 @@ function App() {
   }
 
   const resetAppState = () => {
-    
+    setSelectedCountry('')
+    setSelectedCountriesToCompare([])
+    setBaseSlotValues([0, 0, 0, 0, 0])
+  }
+
+  const handleCountryRemoval = (countryCode: string) => {
+      const countryName = countryCodesCountryNames[countryCode]
+      console.log(countryCodesCountryNames);
+      console.log("ayo", countryCode)
+      setSelectedCountriesToCompare(selectedCountriesToCompare.filter(country => country !== countryCode))
+      toast(`Removed ${countryName}`, {
+        duration: 1700,
+        position: 'top-center',
+      
+        // Styling
+        style: {},
+        className: '',
+      
+        // Custom Icon
+        icon: '👏',
+      })
   }
 
   useEffect(() => {
@@ -43,7 +65,7 @@ function App() {
           {getSubtitleText()}
         </p>
         {selectedCountry && (
-          <button onClick={() => setSelectedCountry('')}>Select another home country</button>
+          <button onClick={() => resetAppState()}>Select another home country</button>
         )}
         {selectedCountry && (
           <p>
@@ -60,6 +82,7 @@ function App() {
                     <p>
                       Country: {country} | Currency: {currencyData[countryCurrencyCodes[country]].code}
                     </p>
+                    <button onClick={() => handleCountryRemoval(country)}>Remove</button>
                     <MeterCompare key={`meter_compare_component_${country}`} baseSlotValuesToCompare={baseSlotValues} countryToCompare={country}/>
                   </div>
                 )
@@ -104,6 +127,7 @@ function App() {
           </div>
         )}
       </div>
+      <Toaster />
     </>
   )
 }

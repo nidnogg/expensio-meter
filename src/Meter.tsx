@@ -23,6 +23,7 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
                 && !event.metaKey
                 && !event.shiftKey 
                 && event.key !== ' ' 
+                && event.key !== 'Tab' 
                 && event.key !== 'Backspace') { 
                 event.preventDefault();
               }
