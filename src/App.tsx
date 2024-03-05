@@ -4,8 +4,9 @@ import { CurrencyJson, CurrencyData, CachePayload } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { Combobox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Combobox, Dialog, Transition } from '@headlessui/react';
+import { CheckIcon, ChevronUpDownIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
+
 import Header from './Header'
 import Meter from './Meter'
 import MeterCompare from './MeterCompare'
@@ -18,6 +19,7 @@ function App() {
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
   const [currencyJson, setCurrencyJson] = useState<CurrencyJson>({} as CurrencyJson)
   const [currencyData, setCurrencyData] = useState<CurrencyData>({} as CurrencyData)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [query, setQuery] = useState('')
   const [hintToastShown, setHintToastShown] = useState<boolean>(false)
   const [hasCache, setHasCache] = useState<boolean>(false)
@@ -35,6 +37,14 @@ function App() {
   // Mocked currency Data, used in testing. To be deprecated in a future release.
   // const currencyJson: CurrencyJson = mockCurrencyData
   // const currencyData: CurrencyData = currencyJson.data
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
 
   const getSubtitleText = () => {
     if (selectedCountry && selectedCountriesToCompare.length === 0)
@@ -430,11 +440,84 @@ function App() {
         )}
       </div>
 
-      {/* Add Modal here */}
-      {/* Open modal */}
-      {/* <button onClick={onOpen}>How to use this?</button> */}
+      <Transition appear show={isModalOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/25" />
+          </Transition.Child>
 
-      <button className="save-data-btn" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    How to use this?
+                  </Dialog.Title>
+                  <div className="mt-2 flex flex-col gap-3">
+                    <p className="text-sm text-gray-600">
+                      This app was built after booking a trip to Argentina and struggling a lot to know if something is incredibly expensive or not.
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      The idea is that you select your home country, add increasing values of things that you find cheap, moderately cheap and so forth.
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      Then, add a country to compare and you can get a better idea of how values scale. You can then save that value to your browser's <code>localStorage</code> for later use.
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      If you found this app useful, feel free to check out <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nidnogg/">some other stuff I made</a> or ⭐ <a target="_blank" rel="noopener noreferrer" href="https://github.com/nidnogg/expensio-meter">star it on GitHub</a>. 
+                    </p>
+                  </div>
+
+
+                  <div className="mt-4">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+                      onClick={closeModal}
+                    >
+                      Got it
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+      <div className="fixed flex flex-col gap-5 bottom-16 left-16">
+        {/* Open modal */}
+        <button
+          onClick={openModal}
+          className="flex justify-center"
+        // className="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+        >
+          <span className="flex flex-row gap-2 text-center">
+            <InformationCircleIcon className="w-5 h-5 self-center" aria-hidden="true" />
+            How to use this?
+          </span>
+        </button>
+        <button className="" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>
+      </div>
       <Toaster />
     </>
   )
