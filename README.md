@@ -17,21 +17,26 @@ For a better idea, check out the [live demo](https://nidnogg.github.io/expensio-
 
 Then, add a country to compare and you can get a better idea of how values scale. You can then save that value to `localStorage` for later use.
 
+
 ## Setup
-Most of the dev environment was bootstrapped using `bun`. It is recommended to use, but not really essential. Several installations used `pnpm` as well.
+Most of the dev environment was bootstrapped using `bun`, but later on it was migrated to `pnpm`. 
+Using `pnpm` is advised, especially if you add any dependencies, but not really essential.
+
+> [!WARNING]  
+> Keep in mind that `.pnpm-lock.yaml` has to match the `package.json`, so CI/CD runs of `bun` installed builds will likely fail.
 
 First, run 
 ```bash
-bun install
+pnpm install
 # alternatively 
-# pnpm install
+# bun install
 ```
 
 Then, 
 ```bash
-bun dev
+pnpm dev
 # alternatively 
-# pnpm dev
+# bun dev
 ```
 
 ## Contributing
