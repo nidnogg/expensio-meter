@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment, } from 'react'
 // import mockCurrencyData from './temp/mock_currency_data.json' 
 import { CurrencyJson, CurrencyData, CachePayload } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-
+import { Combobox, Transition } from '@headlessui/react';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import Header from './Header'
 import Meter from './Meter'
 import MeterCompare from './MeterCompare'
@@ -17,10 +18,10 @@ function App() {
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
   const [currencyJson, setCurrencyJson] = useState<CurrencyJson>({} as CurrencyJson)
   const [currencyData, setCurrencyData] = useState<CurrencyData>({} as CurrencyData)
+  const [query, setQuery] = useState('')
   const [hintToastShown, setHintToastShown] = useState<boolean>(false)
   const [hasCache, setHasCache] = useState<boolean>(false)
   const [cacheText, setCacheText] = useState<string>("💾 Save Data for Next Visit")
-
   const [parent] = useAutoAnimate({
     // Animation duration in milliseconds (default: 250)
     duration: 188,
@@ -67,14 +68,14 @@ function App() {
     })
   }
 
-  
 
-  function checkSorted(arr: number[]) { 
+
+  function checkSorted(arr: number[]) {
     return arr.every((value, index, array) => index === 0 || value >= array[index - 1])
-  } 
+  }
 
   const checkForEqualOrCrescentValues = async () => {
-    if (localStorage.getItem('expensio_ignore_hint') !== 'true' && checkSorted(baseSlotValues) && !hintToastShown ) {
+    if (localStorage.getItem('expensio_ignore_hint') !== 'true' && checkSorted(baseSlotValues) && !hintToastShown) {
       setHintToastShown(true)
       toast((t) => (
         <span>
@@ -88,7 +89,7 @@ function App() {
         </span>
       ), {
         'id': 'hint',
-        'position': 'bottom-right', 
+        'position': 'bottom-right',
         'duration': 5000,
       })
     }
@@ -99,7 +100,7 @@ function App() {
     if (cacheString !== null) {
       setHasCache(true)
       const cache = JSON.parse(cacheString)
-      const {country, values} = cache as CachePayload
+      const { country, values } = cache as CachePayload
       let toastMessage = "Successfully loaded "
       if (country.length > 0) {
         setSelectedCountry(country)
@@ -122,11 +123,11 @@ function App() {
             // color: '#fff',
           },
         }
-      )    
+      )
     }
   }
   const saveDataForNextVisit = () => {
-    const cachePayload: CachePayload = {"country": "", "values": []}
+    const cachePayload: CachePayload = { "country": "", "values": [] }
     if (selectedCountry) {
       cachePayload.country = selectedCountry
     }
@@ -172,12 +173,29 @@ function App() {
             // color: '#fff',
           },
         }
-      )    
+      )
     } catch (err) {
       toast.error(`Failed to delete cached data. Check console for details`)
       console.log(err)
     }
   }
+
+  const countryOptions = Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => ({
+    id: countryCode,
+    name: countryAndCurrencyName
+  }));
+
+  const filteredCountries =
+    query === ''
+      ? countryOptions
+      : countryOptions.filter((country) =>
+        country.name
+          .toLowerCase()
+          .replace(/\s+/g, '')
+          .includes(query.toLowerCase().replace(/\s+/g, ''))
+      );
+
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -214,10 +232,10 @@ function App() {
           {getSubtitleText()}
         </p>
         {selectedCountry && (
-          <button onClick={() => resetAppState()}>Select another home country</button>
+          <button className="mt-5" onClick={() => resetAppState()}>Select another home country</button>
         )}
-        { (selectedCountry && currencyData) && (
-          <p ref={parent}>
+        {(selectedCountry && currencyData) && (
+          <p ref={parent} className="mt-5">
             <b>Country:</b> {countryCodesCountryNames[selectedCountry]}  | <b>Currency Code:</b> {currencyData[countryCurrencyCodes[selectedCountry]].code}
           </p>
         )}
@@ -228,7 +246,7 @@ function App() {
               selectedCountriesToCompare && selectedCountriesToCompare.map(country => {
                 return (
                   <div key={`meter_compare_${country}`}>
-                    <p>
+                    <p className="mt-5">
                       <b>Country:</b> {countryCodesCountryNames[country]} | <b>Currency:</b> {currencyData[countryCurrencyCodes[country]]?.code}
                     </p>
                     <MeterCompare
@@ -248,6 +266,7 @@ function App() {
 
             <br />
             {/* Maybe componentify this too? */}
+
             <select
               value={""}
               onChange={(e) => {
@@ -261,12 +280,15 @@ function App() {
                 </option>
               ))}
             </select>
+
+
           </div>
 
         )}
         {!selectedCountry && (
-          <div ref={parent}>
-            <p>Start by selecting your <b>home country</b></p>
+          <div>
+            <p className="mt-5">Start by selecting your <b>home country</b></p>
+            {/* 
             <select
               value={selectedCountry}
               onChange={(e) => setSelectedCountry(e.target.value)}
@@ -278,10 +300,77 @@ function App() {
                 </option>
               ))}
             </select>
+            */}
+            <Combobox value={selectedCountry} onChange={(value) => setSelectedCountry(value)}>
+              <div className="relative mt-1">
+                <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+                  <Combobox.Input
+                    className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 focus:ring-0"
+                    onChange={(event) => setQuery(event.target.value)}
+                  />
+                  <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                    <ChevronUpDownIcon
+                      className="h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                  </Combobox.Button>
+                </div>
+                <Transition
+                  as={Fragment}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                  afterLeave={() => setQuery('')}
+                >
+                  <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                    {filteredCountries.length === 0 && query !== '' ? (
+                      <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
+                        Nothing found.
+                      </div>
+                    ) : (
+                      filteredCountries.map((country) => (
+                        <Combobox.Option
+                          key={country.id}
+                          className={({ active }) =>
+                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-teal-600 text-white' : 'text-gray-900'
+                            }`
+                          }
+                          value={country.id}
+                        >
+                          {({ selected, active }) => (
+                            <>
+                              <span
+                                className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                  }`}
+                              >
+                                {country.name}
+                              </span>
+                              {selected ? (
+                                <span
+                                  className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'
+                                    }`}
+                                >
+                                  <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                </span>
+                              ) : null}
+                            </>
+                          )}
+                        </Combobox.Option>
+                      ))
+                    )}
+                  </Combobox.Options>
+                </Transition>
+              </div>
+            </Combobox>
           </div>
         )}
       </div>
-      <button className="save-data-btn" onClick={() => {hasCache ? clearCacheData() : saveDataForNextVisit()}}>{cacheText}</button>
+
+      {/* Add Modal here */}
+      {/* Open modal */}
+      {/* <button onClick={onOpen}>How to use this?</button> */}
+
+      <button className="save-data-btn" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>
       <Toaster />
     </>
   )
