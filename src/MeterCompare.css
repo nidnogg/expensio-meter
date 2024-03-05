@@ -35,6 +35,26 @@
   background-color: #1a1a1a;
 }
 
+@media only screen and (max-width: 768px) {
+  .meter {
+    flex-direction: column;
+  }
+
+  .meter div {
+    margin-bottom: 10px;
+  }
+
+  .meter label {
+    width: auto;
+    margin-bottom: 3px;
+  }
+
+  .meter input[type="number"] {
+    width: 100%;
+  }
+}
+
+
 /* Chrome, Safari, Edge, Opera */
 .meter input::-webkit-outer-spin-button,
 .meter input::-webkit-inner-spin-button {

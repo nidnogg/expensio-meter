@@ -17,6 +17,7 @@
   margin-bottom: 5px;
   font-size: 12px;
   color: #888;
+  white-space: normal; /* Allow text to wrap */
 }
 
 .meter input[type="number"] {
@@ -33,4 +34,23 @@
 .meter input[type="number"]:disabled {
   /* TO-DO add proper disabled theming */
   background-color: #1a1a1a;
+}
+
+@media only screen and (max-width: 768px) {
+  .meter {
+    flex-direction: column;
+  }
+
+  .meter div {
+    margin-bottom: 10px;
+  }
+
+  .meter label {
+    width: auto;
+    margin-bottom: 3px;
+  }
+
+  .meter input[type="number"] {
+    width: 100%;
+  }
 }

@@ -113,7 +113,7 @@ function App() {
 
   return (
     <>
-      <div ref={parent} id="capture">
+      <div ref={parent}>
         <Header />
         <p className="subtitle">
           {getSubtitleText()}
