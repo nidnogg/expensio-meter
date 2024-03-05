@@ -518,6 +518,11 @@ function App() {
         </button>
         <button className="" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>
       </div>
+      <footer className="absolute bottom-6 left-0 right-0 b-16">
+        <p className="text-gray-500 text-sm font-light">
+          Distributed under GNU General Public License v3.0. Made by <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nidnogg/">nidnogg</a>.
+        </p>
+      </footer>
       <Toaster />
     </>
   )
