@@ -1,10 +1,9 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useReducer } from 'react'
 // import mockCurrencyData from './temp/mock_currency_data.json' 
 import { CurrencyJson, CurrencyData } from './interfaces'
 import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { debounce } from 'lodash';
 
 import Header from './Header'
 import Meter from './Meter'
@@ -18,6 +17,7 @@ function App() {
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
   const [currencyJson, setCurrencyJson] = useState<CurrencyJson>({} as CurrencyJson)
   const [currencyData, setCurrencyData] = useState<CurrencyData>({} as CurrencyData)
+  const [hintToastShown, setHintToastShown] = useState<boolean>(false)
   const [parent] = useAutoAnimate({
     // Animation duration in milliseconds (default: 250)
     duration: 188,
@@ -42,7 +42,7 @@ function App() {
     const newSlotValues = [...baseSlotValues]
     newSlotValues[index] = value
     setBaseSlotValues(newSlotValues)
-    checkForEqualOrCrescentValuesDebounced()
+    checkForEqualOrCrescentValues()
   }
 
   const resetAppState = () => {
@@ -69,8 +69,12 @@ function App() {
   function checkSorted(arr: number[]) { 
     return arr.every((value, index, array) => index === 0 || value >= array[index - 1])
   } 
-  const checkForEqualOrCrescentValues = () => {
-    if (localStorage.getItem('expensio_ignore_hint') !== 'true' && checkSorted(baseSlotValues)) {
+
+  const checkForEqualOrCrescentValues = async () => {
+    if (localStorage.getItem('expensio_ignore_hint') !== 'true' && checkSorted(baseSlotValues) && !hintToastShown ) {
+      console.log('hintToastShown before', hintToastShown);
+      setHintToastShown(true)
+      console.log('hintToastShown after', hintToastShown);
       toast((t) => (
         <span>
           🔍 <b>Hint:</b> try setting increasing values from left to right. <br /> <br />
@@ -82,14 +86,12 @@ function App() {
           </button>
         </span>
       ), {
+        'id': 'hint',
         'position': 'bottom-right', 
+        'duration': 5000,
       })
     }
   }
-
-  const checkForEqualOrCrescentValuesDebounced = useRef(debounce(() => {
-    checkForEqualOrCrescentValues()
-  }, 400)).current
 
   useEffect(() => {
     async function fetchData() {
@@ -109,9 +111,6 @@ function App() {
     setCurrencyData(currencyJson?.data)
   }, [currencyJson])
 
-  useEffect(() => {
-
-  })
   return (
     <>
       <div ref={parent}>

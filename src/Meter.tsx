@@ -17,7 +17,6 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
             max="100000000000"
             value={baseSlotValues[index]}
             onKeyDown={(event) => {
-              console.log(event)
               if (/[A-Za-z]/.test(event.key) 
                 && !event.ctrlKey 
                 && !event.altKey 
@@ -25,7 +24,8 @@ const Meter: React.FC<MeterProps> = ({ baseSlotValues, handleSlotChange }) => {
                 && !event.shiftKey 
                 && event.key !== ' ' 
                 && event.key !== 'Tab' 
-                && event.key !== 'Backspace') { 
+                && event.key !== 'Backspace'
+                && event.key !== 'Delete') { 
                 event.preventDefault();
               }
             }}

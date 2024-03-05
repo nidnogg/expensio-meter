@@ -35,12 +35,14 @@
   background-color: #1a1a1a;
 }
 
-/* Hide number input arrows */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+/* Chrome, Safari, Edge, Opera */
+.meter input::-webkit-outer-spin-button,
+.meter input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-input[type=number] {
-    -moz-appearance: textfield; /* Firefox */
+
+/* Firefox */
+.meter input[type=number] {
+  -moz-appearance: textfield;
 }
