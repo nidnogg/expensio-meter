@@ -4,7 +4,7 @@ import { CurrencyJson, CurrencyData, CachePayload } from './interfaces'
 import { countryCurrencyCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { Dialog, Transition, Menu } from '@headlessui/react';
+import { Dialog, Transition, Menu, Switch } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/20/solid';
 import Header from './Header'
 import Meter from './Meter'
@@ -20,6 +20,7 @@ function App() {
   const [baseSlotValues, setBaseSlotValues] = useState([0, 0, 0, 0, 0])
   const [currencyJson, setCurrencyJson] = useState<CurrencyJson>({} as CurrencyJson)
   const [currencyData, setCurrencyData] = useState<CurrencyData>({} as CurrencyData)
+  const [exactValues, setExactValues] = useState<boolean>(false)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   // Actually uses `active` prop
   // const [isMenuEnabled, setMenuEnabled] = useState<boolean>(false)
@@ -229,7 +230,26 @@ function App() {
           {getSubtitleText()}
         </p>
         {selectedCountry && (
-          <button className="mt-5 btn-base" onClick={() => resetAppState()}>Select another home country</button>
+          <div>
+            <button className="mt-5 btn-base" onClick={() => resetAppState()}>Select another home country</button>
+            <div className="pt-5 flex flex-row gap-2 justify-center">
+              <p className="text-gray-500 text-sm font-light py-1">Show Exact Conversion Values</p>
+              <Switch
+                checked={exactValues}
+                onChange={setExactValues}
+                className={`${exactValues ? 'bg-zinc-900' : 'bg-zinc-700'}
+          relative inline-flex h-[28px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
+              >
+                <span className="sr-only">Use setting</span>
+                <span
+                  aria-hidden="true"
+                  className={`${exactValues ? 'translate-x-9' : 'translate-x-0'}
+            pointer-events-none inline-block h-[24px] w-[24px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                />
+              </Switch>
+              {/* <p className="text-gray-400 text-sm font-light py-2">On</p> */}
+            </div>
+          </div>
         )}
         {(selectedCountry && currencyData) && (
           <p ref={parent} className="mt-5">
@@ -249,13 +269,14 @@ function App() {
                     <MeterCompare
                       key={`meter_compare_component_${country}`}
                       baseSlotValuesToCompare={baseSlotValues}
+                      exactValues={exactValues}
                       homeCurrencyCode={currencyData[countryCurrencyCodes[selectedCountry]].code}
                       homeCurrencyRate={currencyData[countryCurrencyCodes[selectedCountry]].value}
                       currencyCodeToCompare={currencyData[countryCurrencyCodes[country]].code}
                       currencyRateToCompare={currencyData[countryCurrencyCodes[country]].value}
                     />
                     <br />
-                    <button onClick={() => handleCountryRemoval(country)}>Remove</button>
+                    <button className="base-btn" onClick={() => handleCountryRemoval(country)}>Remove Country</button>
                   </div>
                 )
               })
@@ -326,7 +347,7 @@ function App() {
                       values time and time again and don't really let that sink into memory.
                     </p>
                     <p className="text-sm text-gray-600">
-                      If you found this app useful, feel free to check out <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nidnogg/">some other stuff I made</a> or ⭐ <a target="_blank" rel="noopener noreferrer" href="https://github.com/nidnogg/expensio-meter">star it on GitHub</a>.
+                      If you found this app useful, feel free to check out ⭐ <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nidnogg/">some other stuff I made</a>.
                     </p>
                   </div>
 
@@ -352,14 +373,8 @@ function App() {
         <div className="fixed top-16 w-56 right-8 text-right">
           <Menu as="div" className="relative inline-block text-left">
             <div>
+              {/* Hamburger Menu */}
               <Menu.Button className="inline-flex w-full justify-center rounded-md bg-[#1a1a1a]/20 hover:bg-[#1a1a1a] px-4 py-4 text-sm font-medium text-white  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-                {/* Menu Hamburger */}
-
-                {/* Menu
-                <ChevronDownIcon
-                  className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
-                  aria-hidden="true"
-                /> */}
                 {({ open }) => (
                   <nav className="flex flex-col justify-center sm:py-12">
                     <button

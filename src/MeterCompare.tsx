@@ -3,14 +3,14 @@ import { MeterCompareProps } from "./interfaces"
 import './Meter.css'
 
 
-const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, homeCurrencyCode, homeCurrencyRate, currencyCodeToCompare, currencyRateToCompare }) => {
+const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, exactValues, homeCurrencyCode, homeCurrencyRate, currencyCodeToCompare, currencyRateToCompare }) => {
   const labelNames: string[] = ['Super Cheap', 'Cheap', 'Moderate', 'Expensive', 'Very Expensive']
 
-  const convert = (value: number) => {
+  const convert = (value: number): number => {
     console.log(`Converting ${value} in ${homeCurrencyCode} to ${currencyCodeToCompare}`)
     const homeCurrencyRateBaseUSD = 1.0/homeCurrencyRate
     const currencyRateToCompareBaseUSD = 1.0/currencyRateToCompare
-    return ((value * homeCurrencyRateBaseUSD) / currencyRateToCompareBaseUSD).toFixed(4)
+    return ((value * homeCurrencyRateBaseUSD) / currencyRateToCompareBaseUSD)
   }
 
   return (
@@ -22,7 +22,7 @@ const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, ho
             <label>{labelNames[index]}</label>
             <input
               type="number"
-              value={convertedValue}
+              value={exactValues ? convertedValue.toFixed(4) : Math.round(convertedValue) }
               readOnly
             />
           </div>

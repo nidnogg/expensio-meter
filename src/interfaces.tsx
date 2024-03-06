@@ -39,6 +39,7 @@ export interface MeterProps {
 
 export interface MeterCompareProps {
   baseSlotValuesToCompare: number[];
+  exactValues: boolean;
   homeCurrencyCode: string;
   homeCurrencyRate: number;
   currencyCodeToCompare: string;
