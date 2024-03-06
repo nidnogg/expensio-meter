@@ -92,9 +92,10 @@ function App() {
       toast((t) => (
         <span>
           🔍 <b>Hint:</b> try setting increasing values from left to right. <br /> <br />
-          <button onClick={() => {
-            localStorage.setItem('expensio_ignore_hint', 'true')
-            return toast.dismiss(t.id)
+          <button className="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+            onClick={() => {
+              localStorage.setItem('expensio_ignore_hint', 'true')
+              return toast.dismiss(t.id)
           }}>
             Don't show me again
           </button>
@@ -237,7 +238,7 @@ function App() {
 
 
   return (
-    <div className="min-h-screen pt-24">
+    <div className="min-h-screen pt-32">
       <div ref={parent}>
         <Header />
         <p className="mt-5 subtitle">
@@ -366,6 +367,7 @@ function App() {
         )}
       </div>
 
+      {/* About Modal code */}
       <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
