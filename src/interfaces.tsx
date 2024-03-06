@@ -45,6 +45,11 @@ export interface MeterCompareProps {
   currencyRateToCompare: number;
 }
 
+export interface CompareCountrySelectorProps {
+  selectedCountriesToCompare: string[];
+  setSelectedCountriesToCompare: (value: string[]) => void;
+}
+
 export interface ToasterProps {
   message: string;
 }

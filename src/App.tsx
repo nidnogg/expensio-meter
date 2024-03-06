@@ -11,6 +11,8 @@ import Header from './Header'
 import Meter from './Meter'
 import MeterCompare from './MeterCompare'
 import './App.css'
+import CompareCountrySelector from './CompareSelector';
+import Footer from './Footer';
 
 
 function App() {
@@ -235,7 +237,7 @@ function App() {
 
 
   return (
-    <>
+    <div className="min-h-screen pt-24">
       <div ref={parent}>
         <Header />
         <p className="mt-5 subtitle">
@@ -275,85 +277,9 @@ function App() {
             }
 
             <br />
-            {/* TO-DO remove this */}
-            {/* 
-            <select
-              value={""}
-              onChange={(e) => {
-                setSelectedCountriesToCompare([...selectedCountriesToCompare, e.target.value])
-              }}
-            >
-              <option value="">+ Add Country to Compare</option>
-              {Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => (
-                <option key={`country_${countryAndCurrencyName}_${countryCode}`} value={countryCode}>
-                  {countryAndCurrencyName}
-                </option>
-              ))}
-            </select>
 
-            */}
             {/* Add Another Country Combobox - TO-DO move this into component */}
-            <Combobox value={""} onChange={(value) => {
-              setSelectedCountriesToCompare([...selectedCountriesToCompare, value as string]);
-            }}>
-              <div className="relative mt-1">
-                <div className="relative w-full cursor-default overflow-hidden rounded-lg text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-                  <Combobox.Input
-                    className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 focus:ring-0"
-                    placeholder="Add another Country to Compare"
-                    onChange={(event) => setQuery(event.target.value)}
-                  />
-                  <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                    <ChevronUpDownIcon
-                      className="h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  </Combobox.Button>
-                </div>
-                <Transition
-                  as={Fragment}
-                  leave="transition ease-in duration-100"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                  afterLeave={() => setQuery('')}
-                >
-                  <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-gray-900 text-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                    {filteredCountries.length === 0 && query !== '' ? (
-                      <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
-                        Nothing found.
-                      </div>
-                    ) : (
-                      filteredCountries.map((country) => (
-                        <Combobox.Option
-                          key={country.id}
-                          className={({ active }) =>
-                            `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-gray-700 text-white' : 'text-white-900'}`
-                          }
-                          value={country.id}
-                        >
-                          {({ selected, active }) => (
-                            <>
-                              <span
-                                className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}
-                              >
-                                {country.name}
-                              </span>
-                              {selected ? (
-                                <span
-                                  className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'}`}
-                                >
-                                  <CheckIcon className="h-5 w-5" aria-hidden="true" />
-                                </span>
-                              ) : null}
-                            </>
-                          )}
-                        </Combobox.Option>
-                      ))
-                    )}
-                  </Combobox.Options>
-                </Transition>
-              </div>
-            </Combobox>
+            <CompareCountrySelector selectedCountriesToCompare={selectedCountriesToCompare} setSelectedCountriesToCompare={setSelectedCountriesToCompare}/>
           </div>
 
         )}
@@ -505,11 +431,9 @@ function App() {
       </Transition>
 
       <div className="fixed flex flex-col gap-5 bottom-16 left-16">
-        {/* Open modal */}
         <button
           onClick={openModal}
           className="flex justify-center"
-        // className="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
         >
           <span className="flex flex-row gap-2 text-center">
             <InformationCircleIcon className="w-5 h-5 self-center" aria-hidden="true" />
@@ -518,13 +442,9 @@ function App() {
         </button>
         <button className="" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>
       </div>
-      <footer className="absolute bottom-6 left-0 right-0 b-16">
-        <p className="text-gray-500 text-sm font-light">
-          Distributed under GNU General Public License v3.0. Made by <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nidnogg/">nidnogg</a>.
-        </p>
-      </footer>
       <Toaster />
-    </>
+      <Footer />                  
+    </div>
   )
 }
 
