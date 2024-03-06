@@ -57,3 +57,4 @@ export interface CompareCountrySelectorProps {
 export interface ToasterProps {
   message: string;
 }
+

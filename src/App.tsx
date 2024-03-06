@@ -1,12 +1,11 @@
-import { useEffect, useState, Fragment, } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 // import mockCurrencyData from './temp/mock_currency_data.json' 
 import { CurrencyJson, CurrencyData, CachePayload } from './interfaces'
-import { countryCurrencyCodes, countryNamesCountryCodes, countryCodesCountryNames, API_URL } from './consts'
+import { countryCurrencyCodes, countryCodesCountryNames, API_URL } from './consts'
 import toast, { Toaster } from 'react-hot-toast';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { Combobox, Dialog, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
-
+import { Dialog, Transition, Menu } from '@headlessui/react';
+import { InformationCircleIcon } from '@heroicons/react/20/solid';
 import Header from './Header'
 import Meter from './Meter'
 import MeterCompare from './MeterCompare'
@@ -15,7 +14,6 @@ import CompareCountrySelector from './CompareSelector';
 import Footer from './Footer';
 import CountrySelector from './CountrySelector';
 
-
 function App() {
   const [selectedCountry, setSelectedCountry] = useState('')
   const [selectedCountriesToCompare, setSelectedCountriesToCompare] = useState<string[]>([])
@@ -23,7 +21,8 @@ function App() {
   const [currencyJson, setCurrencyJson] = useState<CurrencyJson>({} as CurrencyJson)
   const [currencyData, setCurrencyData] = useState<CurrencyData>({} as CurrencyData)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const [query, setQuery] = useState('')
+  // Actually uses `active` prop
+  // const [isMenuEnabled, setMenuEnabled] = useState<boolean>(false)
   const [hintToastShown, setHintToastShown] = useState<boolean>(false)
   const [hasCache, setHasCache] = useState<boolean>(false)
   const [cacheText, setCacheText] = useState<string>("💾 Save Data for Next Visit")
@@ -97,7 +96,7 @@ function App() {
             onClick={() => {
               localStorage.setItem('expensio_ignore_hint', 'true')
               return toast.dismiss(t.id)
-          }}>
+            }}>
             Don't show me again
           </button>
         </span>
@@ -194,22 +193,6 @@ function App() {
     }
   }
 
-  const countryOptions = Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => ({
-    id: countryCode,
-    name: countryAndCurrencyName
-  }));
-
-  const filteredCountries =
-    query === ''
-      ? countryOptions
-      : countryOptions.filter((country) =>
-        country.name
-          .toLowerCase()
-          .replace(/\s+/g, '')
-          .includes(query.toLowerCase().replace(/\s+/g, ''))
-      );
-
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -246,7 +229,7 @@ function App() {
           {getSubtitleText()}
         </p>
         {selectedCountry && (
-          <button className="mt-5" onClick={() => resetAppState()}>Select another home country</button>
+          <button className="mt-5 btn-base" onClick={() => resetAppState()}>Select another home country</button>
         )}
         {(selectedCountry && currencyData) && (
           <p ref={parent} className="mt-5">
@@ -281,15 +264,15 @@ function App() {
             <br />
 
             {/* Add Another Country Combobox - TO-DO move this into component */}
-            <CompareCountrySelector selectedCountriesToCompare={selectedCountriesToCompare} setSelectedCountriesToCompare={setSelectedCountriesToCompare}/>
+            <CompareCountrySelector selectedCountriesToCompare={selectedCountriesToCompare} setSelectedCountriesToCompare={setSelectedCountriesToCompare} />
           </div>
 
         )}
         {!selectedCountry && (
           <div>
             <p className="mt-5">Start by selecting your <b>home country</b></p>
-            <CountrySelector selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry}/>
-            
+            <CountrySelector selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
+
           </div>
         )}
       </div>
@@ -340,10 +323,10 @@ function App() {
                     <h3 className="text-gray-600">Ok, but why?</h3>
                     <p className="text-sm text-gray-600">
                       This is useful so you have approximate values you can use as a reference when you find prices out in the wild. Many times we end up converting the same old
-                      values time and time again and don't really let that sink into memory. 
+                      values time and time again and don't really let that sink into memory.
                     </p>
                     <p className="text-sm text-gray-600">
-                      If you found this app useful, feel free to check out <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nidnogg/">some other stuff I made</a> or ⭐ <a target="_blank" rel="noopener noreferrer" href="https://github.com/nidnogg/expensio-meter">star it on GitHub</a>. 
+                      If you found this app useful, feel free to check out <a target="_blank" rel="noopener noreferrer" href="https://github.com/Nidnogg/">some other stuff I made</a> or ⭐ <a target="_blank" rel="noopener noreferrer" href="https://github.com/nidnogg/expensio-meter">star it on GitHub</a>.
                     </p>
                   </div>
 
@@ -364,20 +347,143 @@ function App() {
         </Dialog>
       </Transition>
 
-      <div className="fixed flex flex-col gap-5 bottom-16 left-16">
+      {/* Mobile menu */}
+      <div className="visible lg:invisible absolute flex flex-col gap-5">
+        <div className="fixed top-16 w-56 right-8 text-right">
+          <Menu as="div" className="relative inline-block text-left">
+            <div>
+              <Menu.Button className="inline-flex w-full justify-center rounded-md bg-[#1a1a1a]/20 hover:bg-[#1a1a1a] px-4 py-4 text-sm font-medium text-white  focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                {/* Menu Hamburger */}
+
+                {/* Menu
+                <ChevronDownIcon
+                  className="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
+                  aria-hidden="true"
+                /> */}
+                {({ open }) => (
+                  <nav className="flex flex-col justify-center sm:py-12">
+                    <button
+                      className="text-white w-6 h-6 relative focus:outline-none bg-whit"
+                    >
+                      <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <span
+                          aria-hidden="true"
+                          className={`block absolute top-[6px] h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? 'rotate-45 -translate-y-1.5' : ''
+                            }`}
+                        ></span>
+                        <span
+                          aria-hidden="true"
+                          className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? 'opacity-0' : ''
+                            }`}
+                        ></span>
+                        <span
+                          aria-hidden="true"
+                          className={`block absolute bottom-[4px] h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? '-rotate-45 translate-y-1.5' : ''
+                            }`}
+                        ></span>
+                      </div>
+                    </button>
+                  </nav>
+                )
+                }
+              </Menu.Button>
+            </div>
+            <Transition
+
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-zinc-800 rounded-md bg-[#1a1a1a] shadow-lg ring-1 ring-black/5 focus:outline-none">
+                <div className="px-1 py-1 flex flex-col gap-2">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={`${active ? 'bg-zinc-800 text-white' : 'text-white'
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                        onClick={openModal}
+
+                      >
+                        <InformationCircleIcon className="w-5 h-5 self-center" aria-hidden="true" />
+                        How to use this?
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={`${active ? 'bg-violet-500 text-white' : 'text-white'
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                        onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}
+                      >
+                        {cacheText}
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
+                {/* If needing an extra section, use this */}
+                {/* 
+                <div className="px-1 py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={`${active ? 'bg-violet-500 text-white' : 'text-white'
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      >
+                        Archive
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={`${active ? 'bg-violet-500 text-white' : 'text-white'
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      >
+                        Move
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
+                <div className="px-1 py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={`${active ? 'bg-violet-500 text-white' : 'text-white'
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </Menu.Item>
+                </div>
+                */}
+
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </div>
+
+      </div>
+      {/* Desktop Menu */}
+      <div className="invisible lg:visible fixed flex flex-col gap-5 bottom-16 left-16">
         <button
           onClick={openModal}
-          className="flex justify-center"
+          className="flex justify-center btn-base"
         >
           <span className="flex flex-row gap-2 text-center">
             <InformationCircleIcon className="w-5 h-5 self-center" aria-hidden="true" />
             How to use this?
           </span>
         </button>
-        <button className="" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>
+        <button className="btn-base" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>
       </div>
       <Toaster />
-      <Footer />                  
+      <Footer />
     </div>
   )
 }
