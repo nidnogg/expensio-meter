@@ -93,7 +93,7 @@ function App() {
       toast((t) => (
         <span>
           🔍 <b>Hint:</b> try setting increasing values from left to right. <br /> <br />
-          <button className="inline-flex justify-center rounded-md border border-transparent bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2"
+          <button className="inline-flex justify-center rounded-md border border-transparent bg-gray-200 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2 transition ease-in-out"
             onClick={() => {
               localStorage.setItem('expensio_ignore_hint', 'true')
               return toast.dismiss(t.id)
@@ -329,7 +329,7 @@ function App() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    How to use this?
+                    How to use this
                   </Dialog.Title>
                   <div className="mt-2 flex flex-col gap-3">
                     <p className="text-sm text-gray-600">
@@ -383,17 +383,17 @@ function App() {
                       <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <span
                           aria-hidden="true"
-                          className={`block absolute top-[6px] h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? 'rotate-45 -translate-y-1.5' : ''
+                          className={`block absolute top-[6px] h-0.5 w-5 bg-current transform transition duration-437 ease-in-out ${open ? 'rotate-45 -translate-y-1.5' : ''
                             }`}
                         ></span>
                         <span
                           aria-hidden="true"
-                          className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? 'opacity-0' : ''
+                          className={`block absolute h-0.5 w-5 bg-current transform transition duration-437 ease-in-out ${open ? 'opacity-0' : ''
                             }`}
                         ></span>
                         <span
                           aria-hidden="true"
-                          className={`block absolute bottom-[4px] h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? '-rotate-45 translate-y-1.5' : ''
+                          className={`block absolute bottom-[4px] h-0.5 w-5 bg-current transform transition duration-437 ease-in-out ${open ? '-rotate-45 translate-y-1.5' : ''
                             }`}
                         ></span>
                       </div>
@@ -413,26 +413,26 @@ function App() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-zinc-800 rounded-md bg-[#1a1a1a] shadow-lg ring-1 ring-black/5 focus:outline-none">
+              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-zinc-800 rounded-md bg-[#1a1a1a] shadow-lg ring-1 ring-black/5 focus:outline-none transition ease-in-out">
                 <div className="px-1 py-1 flex flex-col gap-2">
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         className={`${active ? 'bg-zinc-800 text-white' : 'text-white'
-                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm transition ease-in-out`}
                         onClick={openModal}
 
                       >
                         <InformationCircleIcon className="w-5 h-5 self-center" aria-hidden="true" />
-                        How to use this?
+                        How to use this
                       </button>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
                       <button
-                        className={`${active ? 'bg-violet-500 text-white' : 'text-white'
-                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                        className={`${active ? 'bg-zinc-800 text-white' : 'text-white'
+                          } group flex w-full items-center rounded-md px-2 py-2 text-sm transition ease-in-out`}
                         onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}
                       >
                         {cacheText}
@@ -492,7 +492,7 @@ function App() {
         >
           <span className="flex flex-row gap-2 text-center">
             <InformationCircleIcon className="w-5 h-5 self-center" aria-hidden="true" />
-            How to use this?
+            How to use this
           </span>
         </button>
         <button className="btn-base" onClick={() => { hasCache ? clearCacheData() : saveDataForNextVisit() }}>{cacheText}</button>

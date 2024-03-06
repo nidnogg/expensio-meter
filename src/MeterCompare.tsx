@@ -23,6 +23,7 @@ const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, ex
             <input
               type="number"
               value={exactValues ? convertedValue.toFixed(4) : Math.round(convertedValue) }
+              className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               readOnly
             />
           </div>

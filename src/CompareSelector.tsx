@@ -52,7 +52,7 @@ const CompareCountrySelector: React.FC<CompareCountrySelectorProps> = ({selected
           leaveTo="opacity-0"
           afterLeave={() => setQuery('')}
         >
-          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-gray-900 text-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+          <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-zinc-900 text-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
             {filteredCountries.length === 0 && query !== '' ? (
               <div className="relative cursor-default select-none px-4 py-2 text-gray-700">
                 Nothing found.
@@ -62,7 +62,7 @@ const CompareCountrySelector: React.FC<CompareCountrySelectorProps> = ({selected
                 <Combobox.Option
                   key={country.id}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-gray-700 text-white' : 'text-white-900'}`
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-zinc-700 text-white' : 'text-white-900'}`
                   }
                   value={country.id}
                 >
