@@ -2,19 +2,19 @@ import { useState, Fragment } from 'react'
 import { Combobox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { countryNamesCountryCodes } from './consts'
-import { CompareCountrySelectorProps } from './interfaces';
+import { CountrySelectorProps } from './interfaces';
 
 
 
 
-const CompareCountrySelector: React.FC<CompareCountrySelectorProps> = ({selectedCountriesToCompare, setSelectedCountriesToCompare}) => {
+const CountrySelector: React.FC<CountrySelectorProps> = ({ selectedCountry, setSelectedCountry }) => {
   const [query, setQuery] = useState('')
 
   const countryOptions = Object.entries(countryNamesCountryCodes).map(([countryAndCurrencyName, countryCode]) => ({
     id: countryCode,
     name: countryAndCurrencyName
   }));
-  
+
   const filteredCountries =
     query === ''
       ? countryOptions
@@ -24,18 +24,16 @@ const CompareCountrySelector: React.FC<CompareCountrySelectorProps> = ({selected
           .replace(/\s+/g, '')
           .includes(query.toLowerCase().replace(/\s+/g, ''))
       );
-  
 
-      
+
+
   return (
-    <Combobox value={""} onChange={(value) => {
-      setSelectedCountriesToCompare([...selectedCountriesToCompare, value as string]);
-    }}>
+    <Combobox value={selectedCountry} onChange={(value) => setSelectedCountry(value)}>
       <div className="relative mt-1">
-        <div className="relative w-full cursor-default overflow-hidden rounded-lg text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+        <div className="relative w-full cursor-default overflow-hidden rounded-lgtext-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
           <Combobox.Input
             className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 focus:ring-0"
-            placeholder="Add another Country to Compare"
+            placeholder="🔍 Search for your country here"
             onChange={(event) => setQuery(event.target.value)}
           />
           <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
@@ -62,20 +60,23 @@ const CompareCountrySelector: React.FC<CompareCountrySelectorProps> = ({selected
                 <Combobox.Option
                   key={country.id}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-gray-700 text-white' : 'text-white-900'}`
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-gray-700 text-white' : 'text-white-900'
+                    }`
                   }
                   value={country.id}
                 >
                   {({ selected, active }) => (
                     <>
                       <span
-                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}
+                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                          }`}
                       >
                         {country.name}
                       </span>
                       {selected ? (
                         <span
-                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'}`}
+                          className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'
+                            }`}
                         >
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>
@@ -89,8 +90,7 @@ const CompareCountrySelector: React.FC<CompareCountrySelectorProps> = ({selected
         </Transition>
       </div>
     </Combobox>
-
   )
 }
 
-export default CompareCountrySelector
+export default CountrySelector
