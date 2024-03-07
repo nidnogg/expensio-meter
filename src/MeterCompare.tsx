@@ -2,8 +2,7 @@ import React from 'react'
 import { MeterCompareProps } from "./interfaces"
 import './Meter.css'
 
-
-const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, exactValues, homeCurrencyCode, homeCurrencyRate, currencyCodeToCompare, currencyRateToCompare }) => {
+const MeterCompare: React.FC<MeterCompareProps> = ({ baseSlotValuesToCompare, exactValues, homeCurrencyRate, currencyRateToCompare }) => {
   const labelNames: string[] = ['Super Cheap', 'Cheap', 'Moderate', 'Expensive', 'Very Expensive']
 
   const convert = (value: number): number => {
