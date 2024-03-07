@@ -128,7 +128,6 @@ function App() {
         toastMessage = toastMessage.concat("and currency ")
       }
       toastMessage = toastMessage.concat("data from cache.")
-      console.log(toastMessage)
       toast.success(toastMessage,
         {
           style: {
@@ -149,7 +148,6 @@ function App() {
     if (baseSlotValues) {
       cachePayload.values = baseSlotValues
     }
-    console.log("storingCache", cachePayload)
     if (cachePayload.country === "") {
       toast.error('Please try selecting a country and adding data before',
         {
@@ -383,17 +381,17 @@ function App() {
                       <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <span
                           aria-hidden="true"
-                          className={`block absolute top-[6px] h-0.5 w-5 bg-current transform transition duration-437 ease-in-out ${open ? 'rotate-45 -translate-y-1.5' : ''
+                          className={`block absolute top-[6px] h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? 'rotate-45 -translate-y-1.5' : ''
                             }`}
                         ></span>
                         <span
                           aria-hidden="true"
-                          className={`block absolute h-0.5 w-5 bg-current transform transition duration-437 ease-in-out ${open ? 'opacity-0' : ''
+                          className={`block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? 'opacity-0' : ''
                             }`}
                         ></span>
                         <span
                           aria-hidden="true"
-                          className={`block absolute bottom-[4px] h-0.5 w-5 bg-current transform transition duration-437 ease-in-out ${open ? '-rotate-45 translate-y-1.5' : ''
+                          className={`block absolute bottom-[4px] h-0.5 w-5 bg-current transform transition duration-500 ease-in-out ${open ? '-rotate-45 translate-y-1.5' : ''
                             }`}
                         ></span>
                       </div>
