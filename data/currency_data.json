@@ -1,52 +1,52 @@
 {
   "meta": {
-    "last_updated_at": "2026-11-10T23:59:59Z",
+    "last_updated_at": "2026-11-11T23:59:59Z",
     "base_currency": "USD"
   },
   "data": {
     "ADA": {
       "code": "ADA",
-      "value": 5.7371748143
+      "value": 5.7068319848
     },
     "AED": {
       "code": "AED",
-      "value": 3.6730005561
+      "value": 3.6731006464
     },
     "AFN": {
       "code": "AFN",
-      "value": 65.2425066899
+      "value": 65.2650076999
     },
     "ALL": {
       "code": "ALL",
-      "value": 81.230013405
+      "value": 81.8700115845
     },
     "AMD": {
       "code": "AMD",
-      "value": 360.4300496557
+      "value": 360.4800623018
     },
     "ANG": {
       "code": "ANG",
-      "value": 1.7880002112
+      "value": 1.7880002841
     },
     "AOA": {
       "code": "AOA",
-      "value": 913.0001536383
+      "value": 913.0001156611
     },
     "ARB": {
       "code": "ARB",
-      "value": 6.1989221424
+      "value": 6.5158485802
     },
     "ARS": {
       "code": "ARS",
-      "value": 1545.6502838572
+      "value": 1544.4902368985
     },
     "AUD": {
       "code": "AUD",
-      "value": 1.4557002472
+      "value": 1.4614002318
     },
     "AVAX": {
       "code": "AVAX",
-      "value": 0.119083004
+      "value": 0.1170382962
     },
     "AWG": {
       "code": "AWG",
@@ -58,7 +58,7 @@
     },
     "BAM": {
       "code": "BAM",
-      "value": 1.7514002448
+      "value": 1.7641002334
     },
     "BBD": {
       "code": "BBD",
@@ -66,11 +66,11 @@
     },
     "BDT": {
       "code": "BDT",
-      "value": 124.5600163979
+      "value": 124.4600174175
     },
     "BGN": {
       "code": "BGN",
-      "value": 1.6650002009
+      "value": 1.6650002319
     },
     "BHD": {
       "code": "BHD",
@@ -78,7 +78,7 @@
     },
     "BIF": {
       "code": "BIF",
-      "value": 3002.4604856149
+      "value": 3002.6603432074
     },
     "BMD": {
       "code": "BMD",
@@ -86,19 +86,19 @@
     },
     "BNB": {
       "code": "BNB",
-      "value": 0.001468925582
+      "value": 0.00146798777
     },
     "BND": {
       "code": "BND",
-      "value": 1.2817002029
+      "value": 1.2846001428
     },
     "BOB": {
       "code": "BOB",
-      "value": 11.7600011947
+      "value": 11.7100018175
     },
     "BRL": {
       "code": "BRL",
-      "value": 5.5842010866
+      "value": 5.5835510928
     },
     "BSD": {
       "code": "BSD",
@@ -106,19 +106,19 @@
     },
     "BTC": {
       "code": "BTC",
-      "value": 0.00001355349651
+      "value": 0.00001349391992
     },
     "BTN": {
       "code": "BTN",
-      "value": 93.769166595
+      "value": 93.6912549897
     },
     "BWP": {
       "code": "BWP",
-      "value": 13.3511021129
+      "value": 13.440901353
     },
     "BYN": {
       "code": "BYN",
-      "value": 3.0000004096
+      "value": 3.0100004564
     },
     "BYR": {
       "code": "BYR",
@@ -130,35 +130,35 @@
     },
     "CAD": {
       "code": "CAD",
-      "value": 1.4186602363
+      "value": 1.4248901653
     },
     "CDF": {
       "code": "CDF",
-      "value": 2263.8502792231
+      "value": 2273.2502600991
     },
     "CHF": {
       "code": "CHF",
-      "value": 0.8250701199
+      "value": 0.8323201655
     },
     "CLF": {
       "code": "CLF",
-      "value": 0.0238200038
+      "value": 0.0238300035
     },
     "CLP": {
       "code": "CLP",
-      "value": 983.9601348295
+      "value": 982.8001698157
     },
     "CNY": {
       "code": "CNY",
-      "value": 6.670300875
+      "value": 6.6703010769
     },
     "COP": {
       "code": "COP",
-      "value": 3297.4103777861
+      "value": 3283.9804698823
     },
     "CRC": {
       "code": "CRC",
-      "value": 451.6700668361
+      "value": 453.4492852863
     },
     "CUC": {
       "code": "CUC",
@@ -170,15 +170,15 @@
     },
     "CVE": {
       "code": "CVE",
-      "value": 98.7500192496
+      "value": 99.4800146501
     },
     "CZK": {
       "code": "CZK",
-      "value": 21.8042042546
+      "value": 21.9722024158
     },
     "DAI": {
       "code": "DAI",
-      "value": 0.9969658856
+      "value": 0.9961356099
     },
     "DJF": {
       "code": "DJF",
@@ -186,23 +186,23 @@
     },
     "DKK": {
       "code": "DKK",
-      "value": 6.6929906807
+      "value": 6.7377008326
     },
     "DOP": {
       "code": "DOP",
-      "value": 60.6100115987
+      "value": 61.1000108683
     },
     "DOT": {
       "code": "DOT",
-      "value": 1.1830192719
+      "value": 1.1809868747
     },
     "DZD": {
       "code": "DZD",
-      "value": 136.8180238089
+      "value": 137.1200246584
     },
     "EGP": {
       "code": "EGP",
-      "value": 53.3182084461
+      "value": 53.5512094924
     },
     "ERN": {
       "code": "ERN",
@@ -210,115 +210,115 @@
     },
     "ETB": {
       "code": "ETB",
-      "value": 161.1500211674
+      "value": 161.2000243108
     },
     "ETH": {
       "code": "ETH",
-      "value": 0.0004873395252
+      "value": 0.0004853120387
     },
     "EUR": {
       "code": "EUR",
-      "value": 0.8953471473
+      "value": 0.9013191195
     },
     "FJD": {
       "code": "FJD",
-      "value": 2.2636703149
+      "value": 2.2688003424
     },
     "FKP": {
       "code": "FKP",
-      "value": 0.7491204044
+      "value": 0.7532015813
     },
     "GBP": {
       "code": "GBP",
-      "value": 0.7491670983
+      "value": 0.7532131113
     },
     "GEL": {
       "code": "GEL",
-      "value": 2.5943005059
+      "value": 2.5936003373
     },
     "GGP": {
       "code": "GGP",
-      "value": 0.7491203624
+      "value": 0.7532015607
     },
     "GHS": {
       "code": "GHS",
-      "value": 11.6927020843
+      "value": 11.7027019907
     },
     "GIP": {
       "code": "GIP",
-      "value": 0.7491203719
+      "value": 0.7532015429
     },
     "GMD": {
       "code": "GMD",
-      "value": 75.3900120383
+      "value": 75.3900137372
     },
     "GNF": {
       "code": "GNF",
-      "value": 8875.0012356377
+      "value": 8875.0011525781
     },
     "GTQ": {
       "code": "GTQ",
-      "value": 7.6400012538
+      "value": 7.6390013716
     },
     "GYD": {
       "code": "GYD",
-      "value": 209.4800315983
+      "value": 208.980027748
     },
     "HKD": {
       "code": "HKD",
-      "value": 7.8450709912
+      "value": 7.8448010454
     },
     "HNL": {
       "code": "HNL",
-      "value": 26.9361028297
+      "value": 26.9528047176
     },
     "HRK": {
       "code": "HRK",
-      "value": 6.7460209646
+      "value": 6.7910503654
     },
     "HTG": {
       "code": "HTG",
-      "value": 133.0800159586
+      "value": 133.0400150904
     },
     "HUF": {
       "code": "HUF",
-      "value": 326.1300499655
+      "value": 328.8600448769
     },
     "IDR": {
       "code": "IDR",
-      "value": 18121.303532738
+      "value": 18194.902532744
     },
     "ILS": {
       "code": "ILS",
-      "value": 3.1778005899
+      "value": 3.1755005127
     },
     "IMP": {
       "code": "IMP",
-      "value": 0.7491203756
+      "value": 0.753201555
     },
     "INR": {
       "code": "INR",
-      "value": 93.683015668
+      "value": 93.6993125802
     },
     "IQD": {
       "code": "IQD",
-      "value": 1512.0002529414
+      "value": 1512.0002772281
     },
     "IRR": {
       "code": "IRR",
-      "value": 1905870.3155314
+      "value": 1909680.2228312
     },
     "ISK": {
       "code": "ISK",
-      "value": 122.4900127442
+      "value": 123.1200228945
     },
     "JEP": {
       "code": "JEP",
-      "value": 0.7491204136
+      "value": 0.7532015714
     },
     "JMD": {
       "code": "JMD",
-      "value": 158.1400208256
+      "value": 157.9400176839
     },
     "JOD": {
       "code": "JOD",
@@ -326,35 +326,35 @@
     },
     "JPY": {
       "code": "JPY",
-      "value": 158.7100222414
+      "value": 159.7440269458
     },
     "KES": {
       "code": "KES",
-      "value": 129.9009006345
+      "value": 129.9215424714
     },
     "KGS": {
       "code": "KGS",
-      "value": 87.4510140145
+      "value": 87.449008859
     },
     "KHR": {
       "code": "KHR",
-      "value": 4079.9905335
+      "value": 4080.000678685
     },
     "KMF": {
       "code": "KMF",
-      "value": 441.000069529
+      "value": 443.8500563637
     },
     "KPW": {
       "code": "KPW",
-      "value": 900.0001427017
+      "value": 900.0001217837
     },
     "KRW": {
       "code": "KRW",
-      "value": 1343.0302547651
+      "value": 1336.555152459
     },
     "KWD": {
       "code": "KWD",
-      "value": 0.3109900392
+      "value": 0.3115000326
     },
     "KYD": {
       "code": "KYD",
@@ -362,75 +362,75 @@
     },
     "KZT": {
       "code": "KZT",
-      "value": 446.9700817825
+      "value": 447.2600625745
     },
     "LAK": {
       "code": "LAK",
-      "value": 22404.00426408
+      "value": 22410.00422535
     },
     "LBP": {
       "code": "LBP",
-      "value": 89500.01747386
+      "value": 89500.017587594
     },
     "LKR": {
       "code": "LKR",
-      "value": 332.3500531238
+      "value": 332.4000610502
     },
     "LRD": {
       "code": "LRD",
-      "value": 170.2300213833
+      "value": 170.1460281055
     },
     "LSL": {
       "code": "LSL",
-      "value": 16.5400031249
+      "value": 16.5400025699
     },
     "LTC": {
       "code": "LTC",
-      "value": 0.01971268526
+      "value": 0.01988045979
     },
     "LTL": {
       "code": "LTL",
-      "value": 3.0914674363
+      "value": 3.1121026437
     },
     "LVL": {
       "code": "LVL",
-      "value": 0.6292525958
+      "value": 0.633452781
     },
     "LYD": {
       "code": "LYD",
-      "value": 6.4100007952
+      "value": 6.4277012371
     },
     "MAD": {
       "code": "MAD",
-      "value": 9.7951017097
+      "value": 9.8181018175
     },
     "MATIC": {
       "code": "MATIC",
-      "value": 11.3190882074
+      "value": 11.3258325507
     },
     "MDL": {
       "code": "MDL",
-      "value": 17.8300022291
+      "value": 17.9700021914
     },
     "MGA": {
       "code": "MGA",
-      "value": 4595.0007653986
+      "value": 4590.0005589258
     },
     "MKD": {
       "code": "MKD",
-      "value": 55.1649096311
+      "value": 55.4780064903
     },
     "MMK": {
       "code": "MMK",
-      "value": 2099.6802691047
+      "value": 2099.6802463005
     },
     "MNT": {
       "code": "MNT",
-      "value": 3603.480381519
+      "value": 3603.1873461983
     },
     "MOP": {
       "code": "MOP",
-      "value": 8.0806008471
+      "value": 8.0801011838
     },
     "MRO": {
       "code": "MRO",
@@ -438,123 +438,123 @@
     },
     "MRU": {
       "code": "MRU",
-      "value": 40.4114428527
+      "value": 40.7220847921
     },
     "MUR": {
       "code": "MUR",
-      "value": 46.9700074297
+      "value": 47.1695059419
     },
     "MVR": {
       "code": "MVR",
-      "value": 15.4600020352
+      "value": 15.4600028623
     },
     "MWK": {
       "code": "MWK",
-      "value": 1735.9952802826
+      "value": 1733.6742260172
     },
     "MXN": {
       "code": "MXN",
-      "value": 18.6143022535
+      "value": 18.6206035327
     },
     "MYR": {
       "code": "MYR",
-      "value": 4.0557007086
+      "value": 4.0740008053
     },
     "MZN": {
       "code": "MZN",
-      "value": 63.5300072701
+      "value": 63.5500126579
     },
     "NAD": {
       "code": "NAD",
-      "value": 16.5280029166
+      "value": 16.5963030626
     },
     "NGN": {
       "code": "NGN",
-      "value": 1348.7001858327
+      "value": 1345.6802620757
     },
     "NIO": {
       "code": "NIO",
-      "value": 36.7948355557
+      "value": 36.9030601611
     },
     "NOK": {
       "code": "NOK",
-      "value": 9.5071615298
+      "value": 9.5555611836
     },
     "NPR": {
       "code": "NPR",
-      "value": 150.5190245232
+      "value": 149.9830202157
     },
     "NZD": {
       "code": "NZD",
-      "value": 1.7838001921
+      "value": 1.7977003416
     },
     "OMR": {
       "code": "OMR",
-      "value": 0.385000057
+      "value": 0.3851000477
     },
     "OP": {
       "code": "OP",
-      "value": 10.1203886897
+      "value": 10.2320950655
     },
     "PAB": {
       "code": "PAB",
-      "value": 1.0000001788
+      "value": 1.0000001849
     },
     "PEN": {
       "code": "PEN",
-      "value": 3.411500453
+      "value": 3.4093003412
     },
     "PGK": {
       "code": "PGK",
-      "value": 4.3290006642
+      "value": 4.3554008682
     },
     "PHP": {
       "code": "PHP",
-      "value": 63.0600118901
+      "value": 63.2810098289
     },
     "PKR": {
       "code": "PKR",
-      "value": 276.600051897
+      "value": 276.4100326763
     },
     "PLN": {
       "code": "PLN",
-      "value": 3.9338006486
+      "value": 3.9752007262
     },
     "PYG": {
       "code": "PYG",
-      "value": 6221.21095216
+      "value": 6199.3810047835
     },
     "QAR": {
       "code": "QAR",
-      "value": 3.6440006112
+      "value": 3.6410006497
     },
     "RON": {
       "code": "RON",
-      "value": 4.7845709479
+      "value": 4.8181805812
     },
     "RSD": {
       "code": "RSD",
-      "value": 105.3040159767
+      "value": 105.99301882
     },
     "RUB": {
       "code": "RUB",
-      "value": 83.1729158008
+      "value": 82.6620126743
     },
     "RWF": {
       "code": "RWF",
-      "value": 1475.0002126122
+      "value": 1477.2002647716
     },
     "SAR": {
       "code": "SAR",
-      "value": 3.7535004852
+      "value": 3.7530305715
     },
     "SBD": {
       "code": "SBD",
-      "value": 8.0509112853
+      "value": 8.0581140956
     },
     "SCR": {
       "code": "SCR",
-      "value": 14.6100026992
+      "value": 14.8413027701
     },
     "SDG": {
       "code": "SDG",
@@ -562,43 +562,43 @@
     },
     "SEK": {
       "code": "SEK",
-      "value": 9.8672810747
+      "value": 9.9660014313
     },
     "SGD": {
       "code": "SGD",
-      "value": 1.2817801574
+      "value": 1.2844302464
     },
     "SHP": {
       "code": "SHP",
-      "value": 0.7476001346
+      "value": 0.7530001312
     },
     "SLE": {
       "code": "SLE",
-      "value": 22.901724193
+      "value": 22.9898199605
     },
     "SLL": {
       "code": "SLL",
-      "value": 22906.302501222
+      "value": 22928.603806844
     },
     "SOL": {
       "code": "SOL",
-      "value": 0.01199861693
+      "value": 0.01198862996
     },
     "SOS": {
       "code": "SOS",
-      "value": 572.4500790632
+      "value": 578.0000612184
     },
     "SRD": {
       "code": "SRD",
-      "value": 37.5400070461
+      "value": 37.7500065961
     },
     "STD": {
       "code": "STD",
-      "value": 22083.12021078
+      "value": 22230.52893145
     },
     "STN": {
       "code": "STN",
-      "value": 22.0831200409
+      "value": 22.2305290979
     },
     "SVC": {
       "code": "SVC",
@@ -606,19 +606,19 @@
     },
     "SYP": {
       "code": "SYP",
-      "value": 121.5500209217
+      "value": 121.5300158965
     },
     "SZL": {
       "code": "SZL",
-      "value": 16.5073025134
+      "value": 16.5873032718
     },
     "THB": {
       "code": "THB",
-      "value": 33.6130043489
+      "value": 33.770005902
     },
     "TJS": {
       "code": "TJS",
-      "value": 9.2067017462
+      "value": 9.2086009793
     },
     "TMT": {
       "code": "TMT",
@@ -626,39 +626,39 @@
     },
     "TND": {
       "code": "TND",
-      "value": 2.9960004057
+      "value": 2.9808004802
     },
     "TOP": {
       "code": "TOP",
-      "value": 2.3810004652
+      "value": 2.3901002643
     },
     "TRX": {
       "code": "TRX",
-      "value": 3.1462336621
+      "value": 3.1520889518
     },
     "TRY": {
       "code": "TRY",
-      "value": 50.2316091992
+      "value": 50.2569071624
     },
     "TTD": {
       "code": "TTD",
-      "value": 6.7342008072
+      "value": 6.7300010284
     },
     "TWD": {
       "code": "TWD",
-      "value": 33.0040038181
+      "value": 32.8861037384
     },
     "TZS": {
       "code": "TZS",
-      "value": 2633.0003297902
+      "value": 2638.0003759585
     },
     "UAH": {
       "code": "UAH",
-      "value": 45.5373075588
+      "value": 45.5373067507
     },
     "UGX": {
       "code": "UGX",
-      "value": 4077.6006270743
+      "value": 4077.6006079248
     },
     "USD": {
       "code": "USD",
@@ -666,51 +666,51 @@
     },
     "USDC": {
       "code": "USDC",
-      "value": 0.9967204564
+      "value": 0.9949302329
     },
     "USDT": {
       "code": "USDT",
-      "value": 0.9980099081
+      "value": 0.9980251004
     },
     "UYU": {
       "code": "UYU",
-      "value": 40.4810068532
+      "value": 40.5690058087
     },
     "UZS": {
       "code": "UZS",
-      "value": 11974.021744381
+      "value": 11964.271612967
     },
     "VEF": {
       "code": "VEF",
-      "value": 90049793.637927
+      "value": 90183841.832083
     },
     "VES": {
       "code": "VES",
-      "value": 900.4979165205
+      "value": 901.8384814187
     },
     "VND": {
       "code": "VND",
-      "value": 25595.003058143
+      "value": 25656.003717442
     },
     "VUV": {
       "code": "VUV",
-      "value": 120.3721245714
+      "value": 120.611733284
     },
     "WST": {
       "code": "WST",
-      "value": 2.7666733324
+      "value": 2.7738280526
     },
     "XAF": {
       "code": "XAF",
-      "value": 587.3200961723
+      "value": 591.2600687664
     },
     "XAG": {
       "code": "XAG",
-      "value": 0.0194048246
+      "value": 0.0194774066
     },
     "XAU": {
       "code": "XAU",
-      "value": 0.0002477691
+      "value": 0.0002511472
     },
     "XCD": {
       "code": "XCD",
@@ -718,39 +718,39 @@
     },
     "XCG": {
       "code": "XCG",
-      "value": 1.8018352228
+      "value": 1.822379725
     },
     "XDR": {
       "code": "XDR",
-      "value": 0.7381001229
+      "value": 0.7375201285
     },
     "XOF": {
       "code": "XOF",
-      "value": 587.3201069504
+      "value": 591.260091484
     },
     "XPD": {
       "code": "XPD",
-      "value": 0.0009697595
+      "value": 0.000970164
     },
     "XPF": {
       "code": "XPF",
-      "value": 106.9000124572
+      "value": 107.4000133052
     },
     "XPT": {
       "code": "XPT",
-      "value": 0.0006464479
+      "value": 0.0006522772
     },
     "XRP": {
       "code": "XRP",
-      "value": 0.9454885817
+      "value": 0.9476349535
     },
     "YER": {
       "code": "YER",
-      "value": 236.4100291362
+      "value": 236.5000369846
     },
     "ZAR": {
       "code": "ZAR",
-      "value": 16.5253026525
+      "value": 16.6074028252
     },
     "ZMK": {
       "code": "ZMK",
@@ -758,15 +758,15 @@
     },
     "ZMW": {
       "code": "ZMW",
-      "value": 20.3900028304
+      "value": 20.4200027068
     },
     "ZWG": {
       "code": "ZWG",
-      "value": 26.6976262241
+      "value": 26.7382408693
     },
     "ZWL": {
       "code": "ZWL",
-      "value": 66710.009719948
+      "value": 66811.48751759
     }
   }
 }
